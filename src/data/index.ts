@@ -22,7 +22,7 @@ export const features: Feature[] = [
     description:
       'Built for speed and performance with modern technologies that deliver exceptional user experiences.',
     icon: 'Zap',
-    color: 'text-yellow-500',
+    color: 'text-accent-primary',
   },
   {
     id: '2',
