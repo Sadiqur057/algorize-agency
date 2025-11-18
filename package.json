@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",
+    "@radix-ui/react-slot": "^1.2.4",
     "@tabler/icons-react": "^3.35.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
@@ -23,6 +24,7 @@
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-share": "^5.2.2",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
