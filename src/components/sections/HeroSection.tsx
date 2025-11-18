@@ -7,6 +7,7 @@ import FadeInUp from '@/components/animations/FadeInUp';
 import Marquee from '@/components/ui/Marquee';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { AnimatedButton } from '../custom/button';
 
 const HeroSection: React.FC = () => {
   // Logo paths
@@ -151,14 +152,17 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-col items-center mb-4">
               <Link href="/30-min" target="_blank" className="relative group">
                 {/* Button glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
 
-                <Button
+                {/* <Button
                   size="lg"
                   className="relative bg-accent-primary hover:bg-accent-hover text-text-accent px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border border-accent-primary/50"
                 >
                   <span className="relative z-10">Book a 15-min call</span>
-                </Button>
+                </Button> */}
+                <AnimatedButton>
+                  Book a 15-min call
+                </AnimatedButton>
               </Link>
             </div>
           </FadeInUp>
