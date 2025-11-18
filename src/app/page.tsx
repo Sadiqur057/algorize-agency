@@ -8,7 +8,6 @@ import FAQSection from "@/components/sections/FAQSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ClientFeedback from "@/components/sections/ClientFeedbackSection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
-import MarqueeSection from "@/components/sections/MarqueeSection";
 import FlexibleElementsSection from "@/components/sections/FlexibleElementsSection";
 import AgencyProblemsSection from "@/components/sections/AgencyProblemsSection";
 import TechStackSection from "@/components/sections/TechStackSection";
