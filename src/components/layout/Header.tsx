@@ -45,7 +45,6 @@ export function NavbarDemo() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
-
   return (
     <div className="relative w-full">
       <Navbar
@@ -74,7 +73,7 @@ export function NavbarDemo() {
                   key={`mobile-link-${idx}`}
                   href={item.link}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="relative text-neutral-600 dark:text-neutral-300"
+                  className="relative text-neutral-300 dark:text-neutral-300"
                 >
                   <span className="block">{item.name}</span>
                 </a>
@@ -90,21 +89,23 @@ export function NavbarDemo() {
                 >
                   <span className="relative z-10">Book a 15-min call</span>
                 </Button> */}
-                  <AnimatedButton >Book a 15-min call</AnimatedButton>
+                  <AnimatedButton>Book a 15-min call</AnimatedButton>
                 </Link>
               </div>
             </MobileNavMenu>
           </MobileNav>
         ) : (
           // Desktop Navigation Only
-          <NavBody className="inset-shadow-[0_2px_rgb(0_0_0/0.10)] max-w-4xl h-11 items-center gap-1 hidden lg:flex rounded-xl bg-card-bg px-1 font-semibold text-xs 2xl:text-base dark:inset-shadow-[0_1px_rgb(255_255_255/0.15)]">
+          <NavBody className="inset-shadow-[0_2px_rgb(0_0_0/0.10)] max-w-4xl h-14 items-center gap-1 hidden lg:flex rounded-full bg-card-bg px-2.5 font-semibold text-xs 2xl:text-base dark:inset-shadow-[0_1px_rgb(255_255_255/0.15)]">
             <NavbarLogo />
             <NavItems items={navItems} />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 py-2">
               {/* <NavbarButton variant="dark">Book a call</NavbarButton> */}
-              <AnimatedButton width="140px" height="36px">
-                Book a call
-              </AnimatedButton>
+              <Link href="/30-min">
+                <AnimatedButton width="140px" height="36px">
+                  Book a call
+                </AnimatedButton>
+              </Link>
             </div>
           </NavBody>
         )}
