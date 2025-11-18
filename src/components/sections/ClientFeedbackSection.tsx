@@ -1208,7 +1208,6 @@ import Marquee from "@/components/ui/marquee1";
 import AnimatedDots from "@/components/ui/animate-dots";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { useRef, useState } from "react";
-import { homeData } from "./data";
 
 interface Review {
   id: number;
@@ -1220,9 +1219,8 @@ interface Review {
 }
 
 // Get reviews from data
-const reviews: Review[] = homeData.data.reviews;
 
-function ClientFeedback() {
+function ClientFeedback({reviews}: {reviews: Review[]}) {
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
   // State for toggle functionality

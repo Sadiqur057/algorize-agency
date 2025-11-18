@@ -1,5 +1,4 @@
-"use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
@@ -19,13 +18,60 @@ import RotatingMarqueeSection from "@/components/sections/RotatingMarqueeSection
 import PricingSection from "@/components/sections/PricingSection";
 import PlatformComparisonSection from "@/components/sections/PlatformComparisonSection";
 import PlatformComparisonSectionOld from "@/components/sections/PlatformComparisonSection-old";
-import { homeData } from "@/components/sections/data";
+import { homeData as fallbackData } from "@/components/sections/data";
 
-export default function Home() {
+// API URL from environment variable
+const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
+
+interface HomePageData {
+  success: boolean;
+  message: string;
+  data: {
+    services: any[];
+    technologies: any[];
+    projects: any[];
+    processList: any[];
+    blogs: any[];
+    faqs: any[];
+    packages: {
+      trial: any[];
+      monthly: any[];
+      yearly: any[];
+    };
+    sponsors: any[];
+    reviews: any[];
+  };
+}
+
+// Fetch home page data with 1 hour cache
+async function getHomePageData(): Promise<HomePageData> {
+  try {
+    const response = await fetch(`${API_URL}/public/home-page-data`, {
+      next: { revalidate: 3600 }, // Cache for 1 hour (3600 seconds)
+    });
+
+    if (!response.ok) {
+      console.error('Failed to fetch home page data:', response.statusText);
+      return fallbackData;
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching home page data:', error);
+    // Return fallback data in case of error
+    return fallbackData;
+  }
+}
+
+export default async function Home() {
+  // Fetch data on the server without blocking rendering
+  const homeData = await getHomePageData();
   const data = homeData.data;
+
   return (
     <main className="min-h-screen bg-bg-primary">
-      <HeroSection />
+      <HeroSection sponsors={data?.sponsors || []} />
       {/* <ProjectsSection /> */}
       {/* <FeaturesSection /> */}
       {/* <FlexibleElementsSection /> */}
@@ -35,7 +81,6 @@ export default function Home() {
       <WhatWeDoSection services={data?.services || []} />
       <PlatformComparisonSection />
       {/* <PlatformComparisonSectionOld /> */}
-      {/* <MarqueeSection /> */}
       <Carv />
       {/* <TechStackSection /> */}
       <Feature3

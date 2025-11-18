@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
-import { AnimatedButton } from '../custom/button';
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { AnimatedButton } from "../custom/button";
+import Link from "next/link";
 
 const AgencyProblemsSection: React.FC = () => {
   return (
@@ -26,9 +27,9 @@ const AgencyProblemsSection: React.FC = () => {
               <br className="hidden sm:block" />
               and their best solutions
             </h1>
-            <AnimatedButton>
-              Consult with us
-            </AnimatedButton>
+            <Link href={`/30-min`}>
+              <AnimatedButton>Consult with us</AnimatedButton>
+            </Link>
           </div>
 
           {/* Content grid */}
@@ -49,11 +50,12 @@ const AgencyProblemsSection: React.FC = () => {
             {/* Right copy + small image with circular badge */}
             <div className="lg:col-span-6">
               <p className="text-neutral-200 leading-relaxed max-w-xl">
-                Crafting compelling digital experiences that captivate audiences and
-                drive meaningful connections. Our digital agency combines innovation,
-                strategy, and expertise to fuel your online success. On the other hand we
-                denounce righteous indignation and dislike men who are so beguiled and
-                demoralized by the charms of pleasure of the moment.
+                Crafting compelling digital experiences that captivate audiences
+                and drive meaningful connections. Our digital agency combines
+                innovation, strategy, and expertise to fuel your online success.
+                On the other hand we denounce righteous indignation and dislike
+                men who are so beguiled and demoralized by the charms of
+                pleasure of the moment.
               </p>
 
               <div className="relative mt-8 md:mt-10">
@@ -77,11 +79,23 @@ const AgencyProblemsSection: React.FC = () => {
                     {/* Circular text using SVG */}
                     <svg viewBox="0 0 200 200" className="absolute inset-0">
                       <defs>
-                        <path id="textcircle" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
+                        <path
+                          id="textcircle"
+                          d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"
+                        />
                       </defs>
-                      <text fill="rgb(38,38,38)" className="[font-size:11px] md:[font-size:12px] tracking-[0.12em]" style={{ fontWeight: 500, letterSpacing: '0.12em' }}>
-                        <textPath startOffset="0" href="#textcircle" textLength="502">
-                          LEADING DIGITAL AGENCY • SINCE 2005 • LEADING DIGITAL AGENCY • SINCE 2005 •
+                      <text
+                        fill="rgb(38,38,38)"
+                        className="[font-size:11px] md:[font-size:12px] tracking-[0.12em]"
+                        style={{ fontWeight: 500, letterSpacing: "0.12em" }}
+                      >
+                        <textPath
+                          startOffset="0"
+                          href="#textcircle"
+                          textLength="502"
+                        >
+                          LEADING DIGITAL AGENCY • SINCE 2005 • LEADING DIGITAL
+                          AGENCY • SINCE 2005 •
                         </textPath>
                       </text>
                     </svg>
