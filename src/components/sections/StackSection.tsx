@@ -6,92 +6,78 @@ import { cn } from "@/lib/utils";
 import {
   CalendarCheck2,
   Check,
-  Database,
   Globe,
   Plus,
   Sparkles,
-  Target,
 } from "lucide-react";
 import { useRef } from "react";
 import { ProgressiveBlur } from "../ui/progressive-blur";
 import { AnimatedBeam, Circle } from "../ui/animated-beam";
 import Marquee from "../ui/marquee1";
-import AnimatedSVGChart from "../ui/animate-svg-chart";
+import defaultUserImg from "../../../public/assets/user.jpg"
+import { homeData } from "./data";
+import Image from "next/image";
 
-
-interface Platform {
-  id: string;
+interface Technology {
+  id: number;
   name: string;
-  status: "listed" | "in-progress";
-  icon: React.ReactNode;
+  icon: string;
+  description: string;
+  type: string;
+  experience: string;
+  projects: number;
 }
 
-const platforms: Platform[] = [
-  {
-    id: "product-hunt",
-    name: "Product Hunt",
-    status: "listed",
-    icon: <Target className="w-5 h-5 text-orange-500" />,
-  },
-  {
-    id: "angel-list",
-    name: "AngelList",
-    status: "listed",
-    icon: <Sparkles className="w-5 h-5 text-accent-primary" />,
-  },
-  {
-    id: "crunchbase",
-    name: "CrunchBase",
-    status: "in-progress",
-    icon: <Database className="w-5 h-5 text-blue-600" />,
-  },
-];
+interface Review {
+  id: number;
+  name: string;
+  designation: string;
+  rating: string;
+  review: string;
+  img: string | null;
+}
 
-const StatusBadge: React.FC<{ status: "listed" | "in-progress" }> = ({
-  status,
-}) => {
-  const baseClasses =
-    "px-3 py-1 rounded-full text-sm font-medium transition-all duration-200";
+interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  client: string;
+  previewImage: string;
+  date: string;
+}
 
-  if (status === "listed") {
-    return (
-      <span
-        className={`${baseClasses} bg-green-100 text-green-700 border border-green-200`}
-      >
-        <Check className="w-3 h-3 inline mr-1" />
-        Listed
-      </span>
-    );
-  }
 
-  return (
-    <span
-      className={`${baseClasses} bg-accent-primary/20 text-accent-primary border border-accent-primary/30`}
-    >
-      In Progress
-    </span>
-  );
-};
-
-const PlatformItem: React.FC<{ platform: Platform }> = ({ platform }) => {
+const ProjectItem: React.FC<{ project: Project }> = ({ project }) => {
   return (
     <div className="group w-[95%] mx-auto bg-bg-card backdrop-blur-sm rounded-2xl p-2 border border-border-primary shadow-sm hover:shadow-md hover:bg-bg-card/90 transition-all duration-300 hover:scale-[1.02]">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="flex-shrink-0 w-10 h-10 bg-bg-tertiary rounded-xl flex items-center justify-center group-hover:bg-bg-secondary transition-colors duration-200">
-            {platform.icon}
+          <div className="shrink-0 w-10 h-10 bg-bg-tertiary rounded-xl overflow-hidden flex items-center justify-center group-hover:bg-bg-secondary transition-colors duration-200">
+            <Image
+              src={project.previewImage}
+              alt={project.title}
+              width={40}
+              height={40}
+              className="w-full h-full object-cover"
+            />
           </div>
-          <span className="font-medium text-text-primary group-hover:text-text-primary transition-colors duration-200">
-            {platform.name}
-          </span>
+          <div className="flex flex-col">
+            <span className="font-medium text-text-primary text-sm group-hover:text-text-primary transition-colors duration-200">
+              {project.title}
+            </span>
+            <span className="text-xs text-text-muted">{project.client}</span>
+          </div>
         </div>
-        <StatusBadge status={platform.status} />
+        <span className="px-2 py-1 rounded-full text-xs font-medium bg-accent-primary/20 text-accent-primary border border-accent-primary/30">
+          <Check className="w-3 h-3 inline mr-1" />
+          Completed
+        </span>
       </div>
     </div>
   );
 };
 
-const Feature3 = () => {
+const Feature3: React.FC<{technologies: any[], reviews: any[], projects: any[]}> = ({technologies, reviews, projects}) => {
   // Fix the ref types to match what AnimatedBeam expects
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -114,8 +100,8 @@ const Feature3 = () => {
           timelineRef={timelineRef}
           className="md:text-5xl sm:text-4xl text-3xl font-medium text-text-primary"
         >
-          Seamlessly Integrated, <br />
-          Powerful Features
+          Built with Modern <br />
+          Technology & Expertise
         </TimelineContent>
       </article>
       <div className="sm:grid sm:grid-cols-12 sm:space-y-0 space-y-4 gap-4">
@@ -131,55 +117,69 @@ const Feature3 = () => {
           >
             <div className="flex h-full w-full flex-col items-stretch justify-between gap-10">
               <div className="flex flex-row justify-between">
-                <Circle className="p-0.5" ref={div1Ref}>
-                  <img
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200"
-                    alt=""
+                <Circle className="p-[1px] bg-bg-secondary" ref={div1Ref}>
+                  <Image
+                    src={reviews[0]?.img || defaultUserImg}
+                    alt={reviews[0]?.name || "Reviewer 1"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
-                <Circle ref={div2Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1740102074835-f82e160f4d33?q=80&w=200"
-                    alt=""
+                <Circle ref={div2Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[1]?.img || defaultUserImg}
+                    alt={reviews[1]?.name || "Reviewer 2"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
-                <Circle ref={div3Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1596959584322-76585c75d265?q=80&w=200"
-                    alt=""
+                <Circle ref={div3Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[2]?.img || defaultUserImg}
+                    alt={reviews[2]?.name || "Reviewer 3"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
-                <Circle ref={div4Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1714120103714-8e4cd7cf10b5?q=80&w=200"
-                    alt=""
+                <Circle ref={div4Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[3]?.img || defaultUserImg}
+                    alt={reviews[3]?.name || "Reviewer 4"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
 
               </div>
               <div className="flex flex-row justify-between w-[80%] mx-auto">
-                <Circle ref={div5Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1738509559266-bdd2a813c8ad?q=80&w=200"
-                    alt=""
+                <Circle ref={div5Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[4]?.img || defaultUserImg}
+                    alt={reviews[4]?.name || "Reviewer 5"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
-                <Circle ref={div6Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1580518337843-f959e992563b?q=80&w=200"
-                    alt=""
+                <Circle ref={div6Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[5]?.img || defaultUserImg}
+                    alt={reviews[5]?.name || "Reviewer 6"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
-                <Circle ref={div7Ref} className="p-0.5">
-                  <img
-                    src="https://images.unsplash.com/photo-1580518324671-c2f0833a3af3?q=80&w=200"
-                    alt=""
+                <Circle ref={div7Ref} className="p-[1px] bg-bg-secondary">
+                  <Image
+                    src={reviews[6]?.img || defaultUserImg}
+                    alt={reviews[6]?.name || "Reviewer 7"}
+                    width={40}
+                    height={40}
                     className="shrink-0 w-full h-full object-cover rounded-full"
                   />
                 </Circle>
@@ -300,10 +300,10 @@ const Feature3 = () => {
           </div>
           <article className="absolute z-10 right-0 bottom-0 left-0 w-full bg-gradient-to-t from-bg-card via-bg-card to-transparent p-3 pt-[100px]">
             <h3 className="px-1 pt-1 text-text-primary md:text-xl text-lg font-medium">
-              Popular App Integrations
+              Client Satisfaction
             </h3>
             <p className="mt-1 px-1 pb-1 font-normal text-text-muted md:text-sm text-xs w-full">
-              Seamless connection between popular apps that you like
+              Trusted by leading businesses who love working with us and achieving exceptional results
             </p>
           </article>
           <ProgressiveBlur
@@ -318,16 +318,16 @@ const Feature3 = () => {
           className="lg:col-span-4 col-span-6 relative border-2 border-accent-primary/30 p-2 rounded-xl overflow-hidden bg-gradient-to-b from-bg-card "
         >
           <div className="space-y-1 mb-8">
-            {platforms.map((platform) => (
-              <PlatformItem key={platform.id} platform={platform} />
+            {projects.slice(0, 3).map((project) => (
+              <ProjectItem key={project.id} project={project} />
             ))}
           </div>
           <article className="absolute z-10 right-0 bottom-0 left-0 w-full bg-gradient-to-t from-bg-card via-bg-card to-transparent p-3 pt-[100px]">
             <h3 className="px-1 pt-1 text-text-primary md:text-xl text-lg font-medium">
-              We Handle the listings
+              Recent Projects
             </h3>
             <p className="mt-1 px-1 pb-1 font-normal text-text-muted md:text-sm text-xs w-full">
-              Seamless connection between popular apps that you like
+              Showcasing our latest work and successful client partnerships
             </p>
           </article>
         </TimelineContent>
@@ -382,11 +382,10 @@ const Feature3 = () => {
 
           <article className="relative z-10">
             <h3 className="px-1 pt-1 text-text-primary xl:text-xl text-lg font-medium">
-              Sign Up to get 30 days free trail
+              Free Consultation & Strategy Session
             </h3>
             <p className="mt-1 px-1 pb-1 font-normal text-text-muted md:text-sm text-xs w-full">
-              Experience a 30-day free trial that lets you explore at the
-              feature of our app without any commitment
+              Book a complimentary 30-minute consultation to discuss your project needs and get expert recommendations
             </p>
           </article>
           <SparklesComp
@@ -414,35 +413,41 @@ const Feature3 = () => {
           className="col-span-6 h-96 pt-10 overflow-hidden relative w-full border-2 border-accent-primary/30 bg-gradient-to-b from-bg-card rounded-lg"
         >
           <Marquee className="[--duration:20s] [--gap:3rem] pb-6">
-            {[
-              "bg-accent-primary shadow-lg  shadow-accent-primary/30",
-              "bg-accent-secondary shadow-lg shadow-accent-secondary/30",
-              "bg-accent-light shadow-lg shadow-accent-light/30",
-              "bg-accent-hover shadow-lg shadow-accent-hover/30",
-            ].map((color, index) => (
+            {technologies.slice(0, 5).map((tech) => (
               <div
                 className={cn(
-                  "w-20 h-20 flex items-center justify-center rounded-xl",
-                  color,
+                  "w-20 h-20 flex items-center justify-center rounded-xl bg-bg-secondary border border-border-primary p-2 hover:border-accent-primary transition-all duration-300",
                 )}
-                key={index}
-              />
+                key={tech.id}
+                title={tech.name}
+              >
+                <Image
+                  src={tech.icon}
+                  alt={tech.name}
+                  width={60}
+                  height={60}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             ))}
           </Marquee>
           <Marquee reverse className="[--duration:20s] [--gap:3rem] pb-6">
-            {[
-              "bg-accent-primary shadow-lg  shadow-accent-primary/30",
-              "bg-accent-secondary shadow-lg shadow-accent-secondary/30",
-              "bg-accent-light shadow-lg shadow-accent-light/30",
-              "bg-accent-hover shadow-lg shadow-accent-hover/30",
-            ].map((color, index) => (
+            {technologies.slice(5, 10).map((tech) => (
               <div
                 className={cn(
-                  "w-20 h-20 flex items-center justify-center rounded-xl",
-                  color,
+                  "w-20 h-20 flex items-center justify-center rounded-xl bg-bg-secondary border border-border-primary p-2 hover:border-accent-primary transition-all duration-300",
                 )}
-                key={index}
-              />
+                key={tech.id}
+                title={tech.name}
+              >
+                <Image
+                  src={tech.icon}
+                  alt={tech.name}
+                  width={60}
+                  height={60}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             ))}
           </Marquee>
           <div
@@ -459,11 +464,10 @@ const Feature3 = () => {
           />
           <article className="absolute z-10 right-0 bottom-0 left-0 w-full bg-gradient-to-t from-bg-card via-bg-card to-transparent md:p-6 p-2 pt-[100px]">
             <h3 className="px-1 pt-1 text-text-primary md:text-2xl text-xl font-medium">
-              Popular App Integrations
+              Cutting-Edge Technologies
             </h3>
             <p className="mt-1 px-1 pb-1 font-normal text-text-muted md:text-sm text-xs w-full">
-              This component displays an interactive stack of cards with smooth
-              hover animations, gradients, and blur effects.
+              We leverage the latest frameworks, libraries, and tools to deliver high-performance, scalable solutions for your business.
             </p>
           </article>
           <ProgressiveBlur
@@ -498,9 +502,9 @@ const Feature3 = () => {
             timelineRef={timelineRef}
             className="flex gap-2 shrink-0 items-center bg-bg-card/50 backdrop-blur-md border border-border-primary justify-between p-2 top-6 rounded-xl absolute -left-48 rotate-6"
           >
-            <p className="text-text-primary">Website Generation Never been easier</p>
+            <p className="text-text-primary">Custom Web Development</p>
             <button className="bg-accent-primary sm:w-fit w-72 hover:scale-120 flex gap-2 items-center py-3 px-4 shadow-accent-primary/30 shadow-lg rounded-lg sm:text-xl text-text-accent">
-              <Globe size={20} /> Generate Web Pages
+              <Globe size={20} /> Build Your Website
             </button>
           </TimelineContent>
 
@@ -511,18 +515,18 @@ const Feature3 = () => {
             className="flex gap-4 shrink-0 items-center bg-bg-card/50 backdrop-blur-md border border-border-primary p-2 top-24 rounded-xl absolute -right-10 -rotate-6"
           >
             <button className="bg-accent-primary sm:w-fit w-72 hover:scale-120 flex gap-2 items-center py-3 px-4 shadow-accent-primary/30 shadow-lg rounded-lg sm:text-xl text-text-accent">
-              <CalendarCheck2 size={20} /> Schedule Meeting
+              <CalendarCheck2 size={20} /> Book Consultation
             </button>
-            <p className="text-text-primary">Generate meetings with AI</p>
+            <p className="text-text-primary">Schedule your free strategy call</p>
           </TimelineContent>
           <TimelineContent
             animationNum={10}
             timelineRef={timelineRef}
             className="flex gap-4 shrink-0 items-center bg-bg-card/50 backdrop-blur-md border border-border-primary p-2 bottom-32 rounded-xl absolute -left-10 rotate-6"
           >
-            <p className="text-text-primary">Let AI scrape leads for you</p>
+            <p className="text-text-primary">Professional UI/UX Design</p>
             <button className="bg-accent-primary sm:w-fit w-52 hover:scale-120 flex gap-2 items-center py-3 px-4 shadow-accent-primary/30 shadow-lg rounded-lg sm:text-xl text-text-accent">
-              <Sparkles size={20} /> Scrape Leads
+              <Sparkles size={20} /> Start Design
             </button>
           </TimelineContent>
 
@@ -532,10 +536,10 @@ const Feature3 = () => {
           />
           <article className="absolute z-10 right-0 bottom-0 left-0 w-full bg-gradient-to-t from-bg-card via-bg-card to-transparent p-3 pt-[100px]">
             <h3 className="px-1 pt-1 text-text-primary text-xl font-medium">
-              Let AI Handle Everything
+              Full-Service Digital Agency
             </h3>
             <p className="mt-1 px-1 pb-1 font-normal text-text-muted text-sm w-full">
-              Seamless connection between popular apps that you like
+              From design to development, we provide end-to-end solutions for your digital needs
             </p>
           </article>
         </TimelineContent>

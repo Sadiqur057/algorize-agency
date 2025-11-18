@@ -12,7 +12,7 @@ const Badge: React.FC<BadgeProps> = ({
     primary: 'bg-primary-100 text-primary-800 border-primary-200',
     secondary: 'bg-secondary-100 text-secondary-800 border-secondary-200',
     success: 'bg-green-100 text-green-800 border-green-200',
-    warning: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    warning: 'bg-accent-primary/10 text-accent-primary border-accent-primary/20',
     error: 'bg-red-100 text-red-800 border-red-200',
   };
   

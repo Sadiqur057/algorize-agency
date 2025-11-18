@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { 
   Code2, 
   Database, 
@@ -110,7 +110,7 @@ const TechStackSection: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };
@@ -121,7 +121,7 @@ const TechStackSection: React.FC = () => {
     transition: {
       duration: 6,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut" as const
     }
   };
 
@@ -132,9 +132,9 @@ const TechStackSection: React.FC = () => {
         className="absolute inset-0 overflow-hidden"
         animate={floatingAnimation}
       >
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-yellow-500/10 blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-yellow-500/5 blur-3xl"></div>
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-yellow-500/5 blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-accent-primary/10 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-accent-primary/5 blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-accent-primary/5 blur-3xl"></div>
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
@@ -147,16 +147,16 @@ const TechStackSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.span 
-            className="inline-flex items-center gap-2 rounded-full bg-yellow-400/10 text-yellow-400 px-4 py-2 text-sm font-medium mb-4 ring-1 ring-yellow-400/20"
+            className="inline-flex items-center gap-2 rounded-full bg-accent-primary/10 text-accent-primary px-4 py-2 text-sm font-medium mb-4 ring-1 ring-accent-primary/20"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <Zap className="w-4 h-4" />
             Our Technology Stack
           </motion.span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             Modern Tools for
-            <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent"> Exceptional Results</span>
+            <span className="bg-linear-to-r from-accent-primary to-accent-primary/80 bg-clip-text text-transparent"> Exceptional Results</span>
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             We leverage cutting-edge technologies to build scalable, secure, and high-performance applications that drive your business forward.
@@ -178,7 +178,7 @@ const TechStackSection: React.FC = () => {
                 key={item.id}
                 variants={itemVariants}
                 className={`relative col-span-4 rounded-2xl border border-gray-800 bg-gray-900/80 backdrop-blur-sm overflow-hidden group ${
-                  hoveredCard === item.id ? 'ring-2 ring-yellow-400/50 shadow-[0_0_30px_rgba(250,204,21,0.15)]' : ''
+                  hoveredCard === item.id ? 'ring-2 ring-accent-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.15)]' : ''
                 }`}
                 style={{ gridArea: item.gridArea }}
                 whileHover={{ 
@@ -189,19 +189,19 @@ const TechStackSection: React.FC = () => {
                 onHoverEnd={() => setHoveredCard(null)}
               >
                 {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 {/* Card content */}
                 <div className="relative p-5 h-full flex flex-col">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-yellow-400/10 ring-1 ring-yellow-400/20">
-                        <IconComponent className="w-5 h-5 text-yellow-400" />
+                      <div className="p-2 rounded-lg bg-accent-primary/10 ring-1 ring-accent-primary/20">
+                        <IconComponent className="w-5 h-5 text-accent-primary" />
                       </div>
                       <h3 className="text-lg font-semibold text-white">{item.category}</h3>
                     </div>
                     <motion.div 
-                      className="text-yellow-400/30"
+                      className="text-accent-primary/30"
                       animate={{ 
                         rotate: hoveredCard === item.id ? 360 : 0,
                         scale: hoveredCard === item.id ? 1.1 : 1
@@ -227,12 +227,12 @@ const TechStackSection: React.FC = () => {
                             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gray-800/50 border border-gray-700/50"
                             whileHover={{ 
                               scale: 1.05,
-                              backgroundColor: "rgba(250, 204, 21, 0.15)",
-                              borderColor: "rgba(250, 204, 21, 0.3)"
+                              backgroundColor: "rgba(99, 102, 241, 0.15)",
+                              borderColor: "rgba(99, 102, 241, 0.3)"
                             }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
-                            <TechIcon className="w-3.5 h-3.5 text-yellow-400/80" />
+                            <TechIcon className="w-3.5 h-3.5 text-accent-primary/80" />
                             <span className="text-xs text-gray-300 font-medium">{tech.name}</span>
                           </motion.div>
                         );
@@ -246,8 +246,8 @@ const TechStackSection: React.FC = () => {
                   className="absolute inset-0 rounded-2xl pointer-events-none"
                   animate={{
                     boxShadow: hoveredCard === item.id 
-                      ? ["0 0 0 0 rgba(250,204,21,0)", "0 0 0 2px rgba(250,204,21,0.3)", "0 0 0 0 rgba(250,204,21,0)"]
-                      : "0 0 0 0 rgba(250,204,21,0)"
+                      ? ["0 0 0 0 rgba(99,102,241,0)", "0 0 0 2px rgba(99,102,241,0.3)", "0 0 0 0 rgba(99,102,241,0)"]
+                      : "0 0 0 0 rgba(99,102,241,0)"
                   }}
                   transition={{
                     duration: 2,
@@ -274,10 +274,10 @@ const TechStackSection: React.FC = () => {
             Ready to leverage our technology stack for your next project?
           </p>
           <motion.button 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(250,204,21,0.3)]"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-accent-primary hover:bg-accent-primary/80 text-black font-semibold rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(99,102,241,0.3)]"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 0 40px rgba(250,204,21,0.5)"
+              boxShadow: "0 0 40px rgba(99,102,241,0.5)"
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}

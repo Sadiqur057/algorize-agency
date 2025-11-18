@@ -8,6 +8,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
+import Link from "next/link";
 
 import React, { useRef, useState } from "react";
 
@@ -129,7 +130,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+          className="relative px-4 py-2 text-neutral-300"
           key={`link-${idx}`}
           href={item.link}
         >
@@ -233,8 +234,8 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-lg font-normal"
     >
       {/* <img
@@ -244,7 +245,7 @@ export const NavbarLogo = () => {
         height={30}
       /> */}
       <span className="font-medium">Techforge</span>
-    </a>
+    </Link>
   );
 };
 

@@ -1,74 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
+import { motion, useReducedMotion, Variants } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 
-const processList = [
-  {
-    id: 4,
-    title: "Discover & Define",
-    description:
-      "We begin by understanding your brand, business goals, and target audience. This phase helps define the challenges and objectives for the project.",
-    slug: "discover-and-define",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763199976/upload/discover.png",
-  },
-  {
-    id: 5,
-    title: "Strategize & Plan",
-    description:
-      "We develop a strategic roadmap tailored to your goals, including content planning, SEO audit, design wireframes, and tech stack decisions for development.",
-    slug: "strategize-and-plan",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763200059/upload/plan.png",
-  },
-  {
-    id: 6,
-    title: "Design Experience",
-    description:
-      "Our UI/UX designers craft best intuitive and visually compelling interfaces that will resonate with users and align with your brand identity.",
-    slug: "design-experience",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763200094/upload/design.png",
-  },
-  {
-    id: 7,
-    title: "Develop Solutions",
-    description:
-      "We bring designs to life with scalable, secure, and high-performance web development using modern frameworks and clean code practices.",
-    slug: "develop-solutions",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763205011/upload/develop.png",
-  },
-  {
-    id: 8,
-    title: "Optimize & Launch",
-    description:
-      "We fine-tune for SEO, page speed, and responsiveness before launching. Every detail is checked to ensure a smooth and impactful release.",
-    slug: "optimize-and-launch",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763205043/upload/project-complete.png",
-  },
-  {
-    id: 9,
-    title: "Promote & Grow",
-    description:
-      "Post-launch, we support your digital growth through targeted marketing campaigns, analytics, and conversion optimization strategies.",
-    slug: "promote-and-grow",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763205069/upload/support.png",
-  },
-  {
-    id: 10,
-    title: "Next step",
-    description:
-      "Post-launch, we support your digital growth through targeted marketing campaigns, analytics, and conversion optimization strategies.",
-    slug: "promote-and-grow",
-    image:
-      "https://res.cloudinary.com/dygyhxplr/image/upload/v1763205069/upload/support.png",
-  },
-];
 
 interface ProcessCardProps {
   stepNumber: string;
@@ -76,10 +12,7 @@ interface ProcessCardProps {
   description: string;
   stepColor: string;
   gradientFrom: string;
-  pinImage: string;
   rotation: string;
-  id: number;
-  onHoverChange?: (hovered: boolean, id: number) => void;
   enterFrom?: "left" | "right" | "bottom";
   delay?: number;
 }
@@ -88,17 +21,18 @@ const buildCardVariants = (
   direction: "left" | "right" | "bottom",
   reduced: boolean,
   delay = 0
-) => {
-  const commonShow = {
+): Variants => {
+  // Use `any` / casts for transition/ease to satisfy framer-motion's stricter types
+  const commonShow: any = {
     opacity: 1,
     x: 0,
     y: 0,
     rotateX: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 18,
+      type: "tween" as const,
+      duration: 0.8,
+      ease: "linear" as any,
       delay,
     },
   };
@@ -107,19 +41,19 @@ const buildCardVariants = (
     return {
       hidden: { opacity: 0 },
       show: { opacity: 1, transition: { delay } },
-    } as const;
+    } as Variants;
   }
 
-  const hiddenMap = {
+  const hiddenMap: Record<"left" | "right" | "bottom", any> = {
     left: { opacity: 0, x: -40, y: 10, rotateX: 8, scale: 0.98 },
     right: { opacity: 0, x: 40, y: 10, rotateX: 8, scale: 0.98 },
     bottom: { opacity: 0, x: 0, y: 50, rotateX: 8, scale: 0.98 },
-  } as const;
+  };
 
   return {
     hidden: hiddenMap[direction],
     show: commonShow,
-  } as const;
+  } as Variants;
 };
 
 const containerStagger = {
@@ -127,73 +61,13 @@ const containerStagger = {
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 };
 
-const DashedConnector: React.FC<{ gradientId: string; active?: boolean }> = ({
-  gradientId,
-  active = false,
-}) => (
-  <motion.svg
-    width="100%"
-    height="100%"
-    viewBox="0 0 400 200"
-    fill="none"
-    aria-hidden="true"
-  >
-    <defs>
-      <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
-        {active ? (
-          <>
-            <stop offset="0%" stopColor="rgba(99,102,241,0.8)" />
-            <stop offset="100%" stopColor="rgba(236,72,153,0.8)" />
-          </>
-        ) : (
-          <>
-            <stop offset="0%" stopColor="rgba(148,163,184,0.7)" />
-            <stop offset="100%" stopColor="rgba(203,213,225,0.7)" />
-          </>
-        )}
-      </linearGradient>
-      <filter id="connectorShadow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur" />
-        <feOffset in="blur" dx="0" dy="2" result="offset" />
-        <feComponentTransfer>
-          <feFuncA type="linear" slope="0.35" />
-        </feComponentTransfer>
-        <feMerge>
-          <feMergeNode />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-    <motion.path
-      d="M10 150 C120 40, 280 40, 390 150"
-      stroke={`url(#${gradientId})`}
-      strokeWidth={active ? 3.5 : 3}
-      strokeLinecap="round"
-      strokeDasharray="6 12"
-      initial={{ pathLength: 0, opacity: 0 }}
-      whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      animate={{ strokeDashoffset: [0, -120] }}
-      transition={{
-        pathLength: { duration: 1.1, ease: "easeInOut" },
-        opacity: { duration: 0.4 },
-        strokeDashoffset: { duration: 6, ease: "linear", repeat: Infinity },
-      }}
-      filter="url(#connectorShadow)"
-    />
-  </motion.svg>
-);
-
 const ProcessCard: React.FC<ProcessCardProps> = ({
   stepNumber,
   title,
   description,
   stepColor,
   gradientFrom,
-  pinImage,
   rotation,
-  id,
-  onHoverChange,
   enterFrom = "bottom",
   delay = 0,
 }) => {
@@ -210,8 +84,6 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
         className={`relative bg-bg-card/95 backdrop-blur-sm rounded-[50px] p-6 shadow-xl border border-border-primary md:w-80 w-72 hover:shadow-2xl transition-all duration-500 overflow-hidden group will-change-transform my-8 md:my-12`}
         role="group"
         aria-label={`${stepNumber}: ${title}`}
-        onMouseEnter={() => onHoverChange?.(true, id)}
-        onMouseLeave={() => onHoverChange?.(false, id)}
       >
         {/* Glowing Blob Pin Effect */}
         <div className="absolute top-2 right-2 z-10">
@@ -222,7 +94,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
             {/* Main Blob with Dark Center */}
             <motion.div
               aria-hidden="true"
-              className={`w-20 h-20 rounded-full bg-gradient-to-br from-bg-secondary to-bg-tertiary border-2 ${
+              className={`w-20 h-20 rounded-full bg-linear-to-br from-bg-secondary to-bg-tertiary border-2 ${
                 stepColor === "text-accent-primary"
                   ? "border-accent-primary"
                   : stepColor === "text-accent-secondary"
@@ -296,7 +168,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
 
         <div className="h-16"></div>
         <div
-          className={`relative ${gradientFrom} bg-gradient-to-t to-transparent rounded-3xl p-6 z-10`}
+          className={`relative ${gradientFrom} bg-linear-to-t to-transparent rounded-3xl p-6 z-10`}
         >
           <div className="space-y-3">
             <h2 className="text-2xl text-text-primary font-bold mb-2 group-hover:text-accent-primary transition-colors duration-300">
@@ -315,7 +187,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
 const Connector: React.FC = () => (
   <motion.div
     aria-hidden="true"
-    className="absolute z-10 w-96 h-48 transform md:top-40 md:-rotate-[20deg] rotate-[70deg]"
+    className="absolute z-10 w-96 h-48 transform md:top-40 md:-rotate-20 rotate-70"
   >
     <motion.div
       initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
@@ -353,7 +225,7 @@ const Connector: React.FC = () => (
 const BottomConnector: React.FC = () => (
   <motion.div
     aria-hidden="true"
-    className="absolute z-10 w-96 h-48 transform -bottom-48 md:-bottom-64 md:rotate-[40deg] rotate-[70deg]"
+    className="absolute z-10 w-96 h-48 transform -bottom-48 md:-bottom-64 md:rotate-40 rotate-70"
   >
     <motion.div
       initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
@@ -388,11 +260,8 @@ const BottomConnector: React.FC = () => (
   </motion.div>
 );
 
-const WorkflowProcess: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number | null>(null);
-  const handleHoverChange = (hovered: boolean, id: number) => {
-    setActiveStep(hovered ? id : null);
-  };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ProcessSection: React.FC<{processList: any[]}> = ({processList}) => {
 
   // Configuration for card colors and rotations
   const cardStyles = [
@@ -460,7 +329,7 @@ const WorkflowProcess: React.FC = () => {
             <>
               Our Process
               <br />
-              <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
                 Step by Step
               </span>
             </>
@@ -507,7 +376,7 @@ const WorkflowProcess: React.FC = () => {
                   <div className="rotate-6 md:-rotate-6 text-center md:text-left">
                     <h3 className="text-2xl md:text-3xl text-text-primary font-bold leading-tight">
                       Your
-                      <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
                         {" "}
                         all‑in‑one
                       </span>
@@ -520,7 +389,7 @@ const WorkflowProcess: React.FC = () => {
                 {/* Connector */}
                 <motion.div
                   aria-hidden="true"
-                  className="absolute z-10 w-96 h-60 transform mt-40 sm:mt-6 md:top-10 md:rotate-[0deg] rotate-[70deg]"
+                  className="absolute z-10 w-96 h-60 transform mt-40 sm:mt-6 md:top-10 md:rotate-0 rotate-70"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
@@ -562,12 +431,9 @@ const WorkflowProcess: React.FC = () => {
                     description={processList[cardIndex].description}
                     stepColor={style.stepColor}
                     gradientFrom={style.gradientFrom}
-                    pinImage="https://framerusercontent.com/images/ceWoRGcAON0ADKDjPd9HhJlf0h4.png"
                     rotation={style.rotation}
-                    id={processList[cardIndex].id}
                     enterFrom="bottom"
                     delay={0.08}
-                    onHoverChange={handleHoverChange}
                   />
                 </div>
               </motion.div>
@@ -594,12 +460,9 @@ const WorkflowProcess: React.FC = () => {
                   description={processList[leftIndex].description}
                   stepColor={leftStyle.stepColor}
                   gradientFrom={leftStyle.gradientFrom}
-                  pinImage="https://framerusercontent.com/images/qfrgnhbit9GLh4NOTnKVvU.png"
                   rotation={leftStyle.rotation}
-                  id={processList[leftIndex].id}
                   enterFrom="left"
                   delay={0.05}
-                  onHoverChange={handleHoverChange}
                 />
               </div>
 
@@ -614,12 +477,9 @@ const WorkflowProcess: React.FC = () => {
                   description={processList[rightIndex].description}
                   stepColor={rightStyle.stepColor}
                   gradientFrom={rightStyle.gradientFrom}
-                  pinImage="https://framerusercontent.com/images/ceWoRGcAON0ADKDjPd9HhJlf0h4.png"
                   rotation={rightStyle.rotation}
-                  id={processList[rightIndex].id}
                   enterFrom="right"
                   delay={0.1}
-                  onHoverChange={handleHoverChange}
                 />
               </div>
 
@@ -633,4 +493,4 @@ const WorkflowProcess: React.FC = () => {
   );
 };
 
-export default WorkflowProcess;
+export default ProcessSection;

@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useEffect, useState, useMemo, useId, FC, PointerEvent } from 'react';
 
 interface CurvedLoopProps {
@@ -127,7 +128,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
           <path ref={pathRef} id={pathId} d={pathD} fill="none" stroke="transparent" />
         </defs>
         {ready && (
-          <text xmlSpace="preserve" className={`fill-yellow-400 ${className ?? ''}`}>
+          <text xmlSpace="preserve" className={`fill-accent-primary ${className ?? ''}`}>
             <textPath ref={textPathRef} href={`#${pathId}`} startOffset={offset + 'px'} xmlSpace="preserve">
               {totalText}
             </textPath>
