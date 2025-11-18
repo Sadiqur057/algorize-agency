@@ -1,148 +1,82 @@
 'use client';
 
 import React from 'react';
-import { 
-  Code2, 
-  Rocket, 
-  ArrowRight 
-} from 'lucide-react';
+import Image from 'next/image';
 
-interface MarqueeItem {
+interface Sponsor {
   id: number;
-  text?: string;
-  icon?: React.ElementType;
+  title: string;
+  slug: string | null;
+  image: string;
 }
 
-const MarqueeSection: React.FC = () => {
-  // Define the marquee content
-  const marqueeItems: MarqueeItem[] = [
-    { id: 1, text: "Let's Build Together" },
-    { id: 2, icon: Code2 },
-    { id: 3, text: "Let's Build Together" },
-    { id: 4, icon: Code2 },
-    { id: 5, text: "Let's Build Together" },
-    { id: 6, icon: Code2 },
-    { id: 7, text: "Let's Build Together" },
-  ];
+interface MarqueeSectionProps {
+  sponsors: Sponsor[];
+}
 
-  const frontMarqueeItems: MarqueeItem[] = [
-    { id: 1, text: "Let's Build Together" },
-    { id: 2, icon: Rocket },
-    { id: 3, text: "Let's Build Together" },
-    { id: 4, icon: Rocket },
-    { id: 5, text: "Let's Build Together" },
-    { id: 6, icon: Rocket },
-    { id: 7, text: "Let's Build Together" },
-  ];
-
-  const pillItems = [
-    { id: 1, text: "Start Project" },
-    { id: 2, text: "Tech Consultation" },
-    { id: 3, text: "Tech Audit" },
-    { id: 4, text: "DevOps Setup" },
-    { id: 5, text: "Book a Call" },
-  ];
+const MarqueeSection: React.FC<MarqueeSectionProps> = ({ sponsors }:MarqueeSectionProps) => {
+  // If no sponsors, don't render the section
+  if (!sponsors || sponsors.length === 0) {
+    return null;
+  }
 
   return (
-    <main className="relative flex items-center justify-center min-h-screen overflow-hidden">
-      {/* Subtle vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_20%,rgba(250,204,21,0.08),transparent_60%)]"></div>
+    <section className="relative py-12 sm:py-16 bg-bg-primary overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-xs sm:text-sm text-text-muted">
+            Trusted by innovative companies worldwide
+          </p>
+        </div>
 
-      {/* Back ribbon (outlined text) */}
-      <section
-        className="group pointer-events-auto absolute -rotate-3 md:-rotate-2 left-1/2 -translate-x-1/2 top-[20%] md:top-[18%] w-[130vw] sm:w-[120vw] lg:w-[110vw] z-0">
-        <div
-          className="relative overflow-hidden rounded-xl border border-yellow-500/20 bg-gray-900/40 backdrop-blur-sm"
-          style={{ 
-            WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)"
-          }}>
-          <div
-            className="flex w-[200%] items-center gap-12 pr-12 will-change-transform animate-[marquee_20s_linear_infinite] group-hover:[animation-play-state:paused] reduce-motion">
-            {/* group A */}
-            <div className="flex shrink-0 items-center gap-12 py-3 md:py-4">
-              {marqueeItems.map((item) => (
-                <React.Fragment key={`a-${item.id}`}>
-                  {item.text ? (
-                    <span 
-                      className="text-transparent tracking-tight text-2xl md:text-3xl lg:text-4xl font-semibold"
-                      style={{ 
-                        WebkitTextStroke: "1px rgba(250,204,21,0.7)"
-                      }}
-                    >
-                      {item.text}
-                    </span>
-                  ) : item.icon ? (
-                    <item.icon className="w-5 h-5 md:w-6 md:h-6 text-yellow-400/70" />
-                  ) : null}
-                </React.Fragment>
+        {/* Sponsors Marquee */}
+        <div className="relative overflow-hidden">
+          {/* Gradient overlays for fade effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-bg-primary to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none"></div>
+
+          <div className="flex items-center">
+            <div
+              className="flex items-center gap-8 sm:gap-12 md:gap-16 animate-marquee-slow"
+              style={{
+                animation: 'marquee 40s linear infinite',
+              }}
+            >
+              {/* First set of sponsors */}
+              {sponsors.map((sponsor) => (
+                <div
+                  key={`first-${sponsor.id}`}
+                  className="flex-shrink-0 h-12 sm:h-16 w-24 sm:w-32 md:w-40 relative grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                >
+                  <Image
+                    src={sponsor.image}
+                    alt={sponsor.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
+                  />
+                </div>
               ))}
-            </div>
-            {/* group B (clone for seamless loop) */}
-            <div className="flex shrink-0 items-center gap-12 py-3 md:py-4" aria-hidden="true">
-              {marqueeItems.map((item) => (
-                <React.Fragment key={`b-${item.id}`}>
-                  {item.text ? (
-                    <span 
-                      className="text-transparent tracking-tight text-2xl md:text-3xl lg:text-4xl font-semibold"
-                      style={{ 
-                        WebkitTextStroke: "1px rgba(250,204,21,0.7)"
-                      }}
-                    >
-                      {item.text}
-                    </span>
-                  ) : item.icon ? (
-                    <item.icon className="w-5 h-5 md:w-6 md:h-6 text-yellow-400/70" />
-                  ) : null}
-                </React.Fragment>
+              {/* Duplicate set for seamless loop */}
+              {sponsors.map((sponsor) => (
+                <div
+                  key={`second-${sponsor.id}`}
+                  className="flex-shrink-0 h-12 sm:h-16 w-24 sm:w-32 md:w-40 relative grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                  aria-hidden="true"
+                >
+                  <Image
+                    src={sponsor.image}
+                    alt={sponsor.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
+                  />
+                </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Front ribbon (filled text) */}
-      <section
-        className="group pointer-events-auto absolute rotate-3 md:rotate-2 left-1/2 -translate-x-1/2 top-[35%] md:top-[32%] w-[135vw] sm:w-[125vw] lg:w-[115vw] z-10">
-        <div
-          className="relative overflow-hidden rounded-xl border border-yellow-500/30 bg-gray-900/70 shadow-[0_5px_20px_rgba(0,0,0,0.5)]">
-          <div
-            className="flex w-[200%] items-center gap-12 pr-12 will-change-transform animate-[marquee_15s_linear_infinite] group-hover:[animation-play-state:paused] reduce-motion"
-            style={{ 
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-              maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)"
-            }}>
-            {/* group A */}
-            <div className="flex shrink-0 items-center gap-12 py-4 md:py-5">
-              {frontMarqueeItems.map((item) => (
-                <React.Fragment key={`a-${item.id}`}>
-                  {item.text ? (
-                    <span className="tracking-tight text-3xl md:text-4xl lg:text-5xl font-semibold text-yellow-400">
-                      {item.text}
-                    </span>
-                  ) : item.icon ? (
-                    <item.icon className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-                  ) : null}
-                </React.Fragment>
-              ))}
-            </div>
-            {/* group B (clone) */}
-            <div className="flex shrink-0 items-center gap-12 py-4 md:py-5" aria-hidden="true">
-              {frontMarqueeItems.map((item) => (
-                <React.Fragment key={`b-${item.id}`}>
-                  {item.text ? (
-                    <span className="tracking-tight text-3xl md:text-4xl lg:text-5xl font-semibold text-yellow-400">
-                      {item.text}
-                    </span>
-                  ) : item.icon ? (
-                    <item.icon className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-                  ) : null}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
 
       <style jsx global>{`
         @keyframes marquee {
@@ -159,7 +93,7 @@ const MarqueeSection: React.FC = () => {
           }
         }
       `}</style>
-    </main>
+    </section>
   );
 };
 

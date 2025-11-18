@@ -9,15 +9,20 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { AnimatedButton } from '../custom/button';
 
-const HeroSection: React.FC = () => {
-  // Logo paths
-  const companyLogos = [
-    '/assets/logo1.svg',
-    '/assets/logo2.svg',
-    '/assets/logo3.svg',
-    '/assets/logo4.svg',
-    '/assets/logo5.svg',
-  ];
+interface Sponsor {
+  id: number;
+  title: string;
+  slug: string | null;
+  image: string;
+}
+
+interface HeroSectionProps {
+  sponsors?: Sponsor[];
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
+  // Convert sponsors to logo paths for Marquee component
+  const companyLogos = sponsors.map((sponsor) => sponsor.image);
   const testimonialAvatars = [
     {
       id: 1,
@@ -150,7 +155,7 @@ const HeroSection: React.FC = () => {
           {/* Enhanced CTA Button with Glow - Mobile optimized */}
           <FadeInUp delay={0.4}>
             <div className="flex flex-col items-center mb-4">
-              <Link href="/30-min" target="_blank" className="relative group">
+              <Link href="/30-min" className="relative group">
                 {/* Button glow effect */}
                 <div className="absolute inset-0 bg-linear-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
 
@@ -168,20 +173,22 @@ const HeroSection: React.FC = () => {
           </FadeInUp>
 
           {/* Company Logos Marquee - Mobile spacing */}
-          <FadeInUp delay={0.5}>
-            <div className="mt-12 sm:mt-16">
-              <p className="text-xs sm:text-sm text-text-muted mb-6 sm:mb-8 text-center px-4 sm:px-0">
-                Trusted by innovative companies worldwide
-              </p>
-              <Marquee
-                logos={companyLogos}
-                speed={25}
-                direction="left"
-                pauseOnHover={true}
-                className="w-full"
-              />
-            </div>
-          </FadeInUp>
+          {sponsors.length > 0 && (
+            <FadeInUp delay={0.5}>
+              <div className="mt-12 sm:mt-16">
+                <p className="text-xs sm:text-sm text-text-muted mb-6 sm:mb-8 text-center px-4 sm:px-0">
+                  Trusted by innovative companies worldwide
+                </p>
+                <Marquee
+                  logos={companyLogos}
+                  speed={25}
+                  direction="left"
+                  pauseOnHover={true}
+                  className="w-full"
+                />
+              </div>
+            </FadeInUp>
+          )}
         </div>
       </div>
 

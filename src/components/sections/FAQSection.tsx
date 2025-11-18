@@ -6,41 +6,22 @@ import { Plus } from 'lucide-react';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 
-const FAQSection: React.FC = () => {
+interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+const FAQSection: React.FC<{faqs: FAQ[]}> = ({faqs}) => {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
-  const faqItems = [
-    {
-      id: '1',
-      question: 'How long does it take to complete a project?',
-      answer:
-        'Project timelines vary depending on complexity and scope. Typically, a landing page takes 2-3 weeks, while a full website can take 4-8 weeks. We provide detailed timelines during our initial consultation.',
-    },
-    {
-      id: '2',
-      question: 'What is included in the design process?',
-      answer:
-        'Our design process includes research, wireframing, UI/UX design, prototyping, development, testing, and deployment. We also provide ongoing support and maintenance options.',
-    },
-    {
-      id: '3',
-      question: 'Do you offer post-launch support?',
-      answer:
-        'Yes, we offer comprehensive post-launch support including bug fixes, content updates, performance monitoring, and technical maintenance. Support packages are available monthly or annually.',
-    },
-    {
-      id: '4',
-      question: 'Can I customize the package?',
-      answer:
-        'Absolutely! All our packages are fully customizable to meet your specific needs. We can adjust features, timelines, and deliverables based on your requirements and budget.',
-    },
-    {
-      id: '5',
-      question: 'What payment methods do you accept?',
-      answer:
-        'We accept various payment methods including credit cards, bank transfers, PayPal, and cryptocurrency. Payment schedules can be arranged with milestones for larger projects.',
-    },
-  ];
+
+  // Convert to the format expected by the component
+  const faqItems = faqs.map((faq) => ({
+    id: faq.id.toString(),
+    question: faq.question,
+    answer: faq.answer,
+  }));
 
   const toggleItem = (id: string) => {
     const newOpenItems = new Set(openItems);
@@ -71,7 +52,7 @@ const FAQSection: React.FC = () => {
               }
               subtitle={
                 <>
-                  If you don't find your answer here,
+                  If you don&apos;t find your answer here,
                   <br />
                   feel free to{' '}
                   <span className="text-accent-primary font-medium cursor-pointer hover:text-accent-hover transition-colors">

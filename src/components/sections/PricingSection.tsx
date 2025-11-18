@@ -1,1263 +1,91 @@
-// // // 'use client';
-
-// // // import React from 'react';
-// // // import { motion } from 'framer-motion';
-// // // import Button from '@/components/ui/Button';
-// // // import ScrollReveal from '@/components/animations/ScrollReveal';
-// // // import StaggerContainer from '@/components/animations/StaggerContainer';
-// // // import SectionHeader from '@/components/ui/SectionHeader';
-// // // import Link from 'next/link';
-
-// // // const PricingSection: React.FC = () => {
-// // //   const services = [
-// // //     {
-// // //       id: 'landing',
-// // //       name: 'Landing Creation',
-// // //       price: '$12000+',
-// // //       description:
-// // //         "Every business needs a landing, and it's never been easier to get one...",
-// // //       features: [
-// // //         '2 design concepts',
-// // //         'Full copywriting',
-// // //         'Unlimited 3D models',
-// // //         'Framer development',
-// // //         '2 rounds of revisions',
-// // //         '1 month of free support',
-// // //       ],
-// // //       spotsAvailable: '2 spots available',
-// // //       isClientChoice: true,
-// // //     },
-// // //     {
-// // //       id: 'product',
-// // //       name: 'Product Design',
-// // //       price: '$20000+',
-// // //       description:
-// // //         "Every business needs a website, and it's never been easier to get one.",
-// // //       features: [
-// // //         'User flow design concepts',
-// // //         'UI / UX design system',
-// // //         'Optimized for mobile',
-// // //         'Figma files',
-// // //         'Unlimited free updates',
-// // //       ],
-// // //       spotsAvailable: '3 spots available',
-// // //       isClientChoice: false,
-// // //     },
-// // //     {
-// // //       id: 'videos',
-// // //       name: 'Launch Videos',
-// // //       price: '$10000+',
-// // //       description:
-// // //         "Every business needs a website, and it's never been easier to get one.",
-// // //       features: [
-// // //         '2 design concepts',
-// // //         'Full copywriting',
-// // //         'Unlimited 3D models',
-// // //         'Framer development',
-// // //         '2 rounds of revisions',
-// // //         '1 month of free support',
-// // //       ],
-// // //       spotsAvailable: '5 spots available',
-// // //       isClientChoice: false,
-// // //     },
-// // //   ];
-
-// // //   const [isMobile, setIsMobile] = React.useState(false);
-// // //   React.useEffect(() => {
-// // //     const check = () => setIsMobile(window.innerWidth < 768);
-// // //     check();
-// // //     window.addEventListener('resize', check);
-// // //     return () => window.removeEventListener('resize', check);
-// // //   }, []);
-
-// // //   return (
-// // //     <>
-// // //       <section
-// // //         className="py-12 bg-transparent relative overflow-hidden"
-// // //         id="pricing"
-// // //       >
-// // //         {/* Animated Background Elements */}
-// // //         <div className="absolute inset-0 overflow-hidden">
-// // //           <motion.div
-// // //             className="absolute top-20 left-10 w-32 h-32 bg-accent-primary/10 rounded-full blur-2xl"
-// // //             animate={{
-// // //               x: [0, 50, 0],
-// // //               y: [0, -30, 0],
-// // //               scale: [1, 1.2, 1],
-// // //             }}
-// // //             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-// // //           />
-// // //           <motion.div
-// // //             className="absolute bottom-20 right-10 w-24 h-24 bg-accent-hover/10 rounded-full blur-xl"
-// // //             animate={{
-// // //               x: [0, -40, 0],
-// // //               y: [0, 20, 0],
-// // //               scale: [1, 0.8, 1],
-// // //             }}
-// // //             transition={{
-// // //               duration: 6,
-// // //               repeat: Infinity,
-// // //               ease: 'easeInOut',
-// // //               delay: 2,
-// // //             }}
-// // //           />
-// // //         </div>
-
-// // //         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-// // //           {/* Section Header */}
-// // //           <div className="text-center mb-10">
-// // //             {/* Header Section */}
-// // //             <div className="w-full px-4">
-// // //               <SectionHeader
-// // //                 eyebrow="Pricing"
-// // //                 title={
-// // //                   <>
-// // //                     Simple, Transparent
-// // //                     <br />
-// // //                     <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
-// // //                       Pricing for Startups
-// // //                     </span>
-// // //                   </>
-// // //                 }
-// // //                 subtitle={
-// // //                   <>
-// // //                     Get a premium website or custom business solution
-// // //                     <br className="hidden md:block" />
-// // //                     that meets your goals and drives measurable growth.
-// // //                   </>
-// // //                 }
-// // //                 align="center"
-// // //                 spacing="lg"
-// // //               />
-// // //             </div>
-// // //           </div>
-// // //         </div>
-// // //       </section>
-
-// // //       {/* Sticky Header Section */}
-// // //       <div className="sticky top-0 z-50  ">
-// // //         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-         
-// // //             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-// // //               <Link href="/30-min" target="_blank" className="relative group">
-// // //                 {/* Button glow effect */}
-// // //                 <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
-// // //                 <Button
-// // //                   size="lg"
-// // //                   className="group relative bg-accent-primary hover:bg-accent-hover text-text-accent px-5 sm:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border border-accent-primary/50"
-// // //                 >
-// // //                   <motion.div
-// // //                     className={
-// // //                       'bg-white rounded-xl flex items-center justify-center mr-3 shadow-lg transition-all duration-300 group-hover:shadow-xl w-10 h-10'
-// // //                     }
-// // //                     whileHover={{
-// // //                       boxShadow: '0 10px 25px -5px rgba(204, 255, 0, 0.4)',
-// // //                     }}
-// // //                   >
-// // //                     <motion.span
-// // //                       className={
-// // //                         'text-text-accent font-bold transition-all text-base duration-300'
-// // //                       }
-// // //                       transition={{ duration: 0.3 }}
-// // //                     >
-// // //                       AT
-// // //                     </motion.span>
-// // //                   </motion.div>
-// // //                   <span className="relative z-10 inline-flex items-center">
-// // //                     <div className="translate-x-1 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-// // //                       <div className="w-2 md:w-1 group-hover:w-[110px] md:group-hover:w-[70px] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-// // //                         <span className="inline-flex items-center gap-2 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 will-change-transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap">
-// // //                           <span className="text-text-accent/90 translate-x-1 group-hover:translate-x-0 group-hover:rotate-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] delay-100">
-// // //                             +
-// // //                           </span>
-// // //                           <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-full bg-bg-primary/90 border border-border-primary/60 text-[10px] font-semibold tracking-wider text-text-secondary translate-x-1 group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] delay-150 shadow-[0_0_0_0_rgba(204,255,0,0)] group-hover:shadow-[0_0_18px_3px_rgba(204,255,0,0.25)]">
-// // //                             YOU
-// // //                             <span
-// // //                               aria-hidden
-// // //                               className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
-// // //                             >
-// // //                               <span className="absolute inset-y-0 left-[-120%] w-[80%] bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 group-hover:left-[140%] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-// // //                             </span>
-// // //                           </span>
-// // //                         </span>
-// // //                       </div>
-// // //                     </div>
-
-// // //                     <span className="text-base font-semibold tracking-wide">
-// // //                       Book a 15-min call
-// // //                     </span>
-// // //                   </span>
-// // //                 </Button>
-// // //               </Link>
-// // //               <p className="text-text-secondary text-sm text-center">
-// // //                 Starting from just{' '}
-// // //                 <span className="underline text-accent-primary font-semibold">
-// // //                   $5000
-// // //                 </span>{' '}
-// // //                 |{' '}
-// // //                 <span className="underline text-accent-primary font-semibold">
-// // //                   Monthly
-// // //                 </span>
-// // //               </p>
-// // //             </div>
-         
-// // //         </div>
-// // //       </div>
-
-// // //       {/* Pricing Cards Section */}
-// // //       <div className="relative flex flex-col mb-20 gap-10 md:gap-20 pt-10">
-// // //         {services.map((service, index) => {
-// // //           return (
-// // //             <div
-// // //               key={service.id}
-// // //               className={isMobile ? '' : 'sticky'}
-// // //               style={
-// // //                 isMobile
-// // //                   ? undefined
-// // //                   : {
-// // //                       top: `calc(170px + ${index * 80}px)`,
-// // //                     }
-// // //               }
-// // //             >
-// // //               <div
-// // //                 className={`flex items-center justify-center ${isMobile ? 'mb-8' : ''}`}
-// // //               >
-// // //                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-// // //                   <motion.div
-// // //                     variants={{
-// // //                       hidden: { opacity: 0, y: 60 },
-// // //                       visible: { opacity: 1, y: 0 },
-// // //                     }}
-// // //                     initial="hidden"
-// // //                     whileInView="visible"
-// // //                     viewport={{ once: true, margin: '-40px' }}
-// // //                     transition={{ duration: 0.6, ease: 'easeOut' }}
-// // //                     className={`bg-bg-card/95 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden border border-border-primary hover:border-accent-primary/50 transition-all duration-500 group`}
-// // //                     whileHover={{
-// // //                       y: -5,
-// // //                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4)',
-// // //                     }}
-// // //                     style={{
-// // //                       background: `linear-gradient(135deg, 
-// // //                         rgba(31, 31, 31, 0.95) 0%, 
-// // //                         rgba(42, 42, 42, 0.95) 50%, 
-// // //                         rgba(31, 31, 31, 0.95) 100%)`,
-// // //                       transform: `scale(${1 - index * 0.02})`,
-// // //                     }}
-// // //                   >
-// // //                     <div className="p-8 relative z-10">
-// // //                       <div className="flex flex-col lg:flex-row">
-// // //                         {/* Left Side - Service Info */}
-// // //                         <div className="lg:flex-1 lg:pr-8">
-// // //                           {/* Service Name */}
-// // //                           <motion.h3
-// // //                             className="text-2xl font-bold text-text-primary mb-6 group-hover:text-accent-primary transition-colors duration-300"
-// // //                           >
-// // //                             {service.name}
-// // //                           </motion.h3>
-
-// // //                           {/* Price */}
-// // //                           <div className="mb-6">
-// // //                             <motion.span
-// // //                               className="text-5xl font-bold bg-gradient-to-r from-text-primary to-accent-primary bg-clip-text text-transparent"
-// // //                               animate={{
-// // //                                 backgroundPosition: [
-// // //                                   '0% 50%',
-// // //                                   '100% 50%',
-// // //                                   '0% 50%',
-// // //                                 ],
-// // //                               }}
-// // //                               transition={{ duration: 3, repeat: Infinity }}
-// // //                               style={{
-// // //                                 backgroundSize: '200% 200%',
-// // //                               }}
-// // //                             >
-// // //                               {service.price}
-// // //                             </motion.span>
-// // //                           </div>
-
-// // //                           {/* Description */}
-// // //                           <motion.p
-// // //                             className="text-text-secondary text-base mb-8 leading-relaxed group-hover:text-text-primary transition-colors duration-300"
-// // //                             initial={{ opacity: 0.8 }}
-// // //                             whileHover={{ opacity: 1 }}
-// // //                           >
-// // //                             {service.description}
-// // //                           </motion.p>
-
-// // //                           {/* CTA Button */}
-// // //                           <motion.div
-// // //                             whileTap={{ scale: 0.95 }}
-// // //                           >
-// // //                             <Button
-// // //                               variant="primary"
-// // //                               size="lg"
-// // //                               className="mb-6 bg-accent-primary hover:bg-accent-hover text-text-accent px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn"
-// // //                             >
-// // //                               <span className="relative z-10">
-// // //                                 Book a 15-min call
-// // //                               </span>
-// // //                               <motion.div
-// // //                                 className="absolute inset-0 bg-gradient-to-r from-accent-hover to-accent-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-// // //                                 animate={{
-// // //                                   x: ['-100%', '100%'],
-// // //                                 }}
-// // //                                 transition={{
-// // //                                   duration: 2,
-// // //                                   repeat: Infinity,
-// // //                                   ease: 'easeInOut',
-// // //                                 }}
-// // //                               />
-// // //                             </Button>
-// // //                           </motion.div>
-
-// // //                           {/* Spots Available */}
-// // //                           <motion.div
-// // //                             className="flex items-center text-sm text-text-muted"
-// // //                             animate={{
-// // //                               opacity: [0.7, 1, 0.7],
-// // //                             }}
-// // //                             transition={{ duration: 2, repeat: Infinity }}
-// // //                           >
-// // //                             <motion.div
-// // //                               className="w-2 h-2 bg-accent-primary rounded-full mr-3"
-// // //                               animate={{
-// // //                                 opacity: [1, 0.7, 1],
-// // //                               }}
-// // //                               transition={{ duration: 1.5, repeat: Infinity }}
-// // //                             />
-// // //                             <span>{service.spotsAvailable}</span>
-// // //                           </motion.div>
-// // //                         </div>
-
-// // //                         {/* Middle Border */}
-// // //                         <div className="hidden lg:block w-px bg-border-primary mx-8"></div>
-
-// // //                         {/* Right Side - Features */}
-// // //                         <div className="lg:flex-1 lg:pl-8 mt-8 lg:mt-0">
-// // //                           <div className="space-y-4">
-// // //                             {service.features.map((feature, featureIndex) => (
-// // //                               <motion.div
-// // //                                 key={feature}
-// // //                                 className="flex items-center group/feature"
-// // //                                 initial={{ opacity: 0, x: 20 }}
-// // //                                 animate={{ opacity: 1, x: 0 }}
-// // //                                 transition={{ delay: featureIndex * 0.1 }}
-// // //                                 whileHover={{ x: 5 }}
-// // //                               >
-// // //                                 <motion.div
-// // //                                   className="w-6 h-6 bg-accent-primary/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0 group-hover/feature:bg-accent-primary/30 transition-colors duration-300"
-// // //                                 >
-// // //                                   <motion.div
-// // //                                     className="w-3 h-3 bg-accent-primary rounded-full"
-// // //                                     animate={{
-// // //                                       boxShadow: [
-// // //                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-// // //                                         '0 0 8px rgba(204, 255, 0, 0.6)',
-// // //                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-// // //                                       ],
-// // //                                     }}
-// // //                                     transition={{
-// // //                                       duration: 2,
-// // //                                       repeat: Infinity,
-// // //                                       delay: featureIndex * 0.3,
-// // //                                     }}
-// // //                                   />
-// // //                                 </motion.div>
-// // //                                 <span className="text-text-secondary text-base group-hover/feature:text-text-primary transition-colors duration-300">
-// // //                                   {feature}
-// // //                                 </span>
-// // //                               </motion.div>
-// // //                             ))}
-// // //                           </div>
-// // //                         </div>
-// // //                       </div>
-// // //                     </div>
-// // //                   </motion.div>
-// // //                 </div>
-// // //               </div>
-// // //             </div>
-// // //           );
-// // //         })}
-// // //       </div>
-// // //     </>
-// // //   );
-// // // };
-
-// // // export default PricingSection;
-
-
-// // 'use client';
-
-// // import React from 'react';
-// // import { motion } from 'framer-motion';
-// // import Button from '@/components/ui/Button';
-// // import ScrollReveal from '@/components/animations/ScrollReveal';
-// // import StaggerContainer from '@/components/animations/StaggerContainer';
-// // import SectionHeader from '@/components/ui/SectionHeader';
-// // import Link from 'next/link';
-
-// // const PricingSection: React.FC = () => {
-// //   const services = [
-// //     {
-// //       id: 'landing',
-// //       name: 'Landing Creation',
-// //       price: '$12000+',
-// //       description:
-// //         "Every business needs a landing, and it's never been easier to get one...",
-// //       features: [
-// //         '2 design concepts',
-// //         'Full copywriting',
-// //         'Unlimited 3D models',
-// //         'Framer development',
-// //         '2 rounds of revisions',
-// //         '1 month of free support',
-// //       ],
-// //       spotsAvailable: '2 spots available',
-// //       isClientChoice: true,
-// //     },
-// //     {
-// //       id: 'product',
-// //       name: 'Product Design',
-// //       price: '$20000+',
-// //       description:
-// //         "Every business needs a website, and it's never been easier to get one.",
-// //       features: [
-// //         'User flow design concepts',
-// //         'UI / UX design system',
-// //         'Optimized for mobile',
-// //         'Figma files',
-// //         'Unlimited free updates',
-// //       ],
-// //       spotsAvailable: '3 spots available',
-// //       isClientChoice: false,
-// //     },
-// //     {
-// //       id: 'videos',
-// //       name: 'Launch Videos',
-// //       price: '$10000+',
-// //       description:
-// //         "Every business needs a website, and it's never been easier to get one.",
-// //       features: [
-// //         '2 design concepts',
-// //         'Full copywriting',
-// //         'Unlimited 3D models',
-// //         'Framer development',
-// //         '2 rounds of revisions',
-// //         '1 month of free support',
-// //       ],
-// //       spotsAvailable: '5 spots available',
-// //       isClientChoice: false,
-// //     },
-// //   ];
-
-// //   const [isMobile, setIsMobile] = React.useState(false);
-
-// //   React.useEffect(() => {
-// //     const check = () => setIsMobile(window.innerWidth < 768);
-// //     check();
-// //     window.addEventListener('resize', check);
-// //     return () => window.removeEventListener('resize', check);
-// //   }, []);
-
-// //   return (
-// //     <>
-// //       <section
-// //         className="py-12 bg-transparent relative overflow-hidden"
-// //         id="pricing"
-// //       >
-// //         {/* Animated Background Elements */}
-// //         <div className="absolute inset-0 overflow-hidden">
-// //           <motion.div
-// //             className="absolute top-20 left-10 w-32 h-32 bg-accent-primary/10 rounded-full blur-2xl"
-// //             animate={{
-// //               x: [0, 50, 0],
-// //               y: [0, -30, 0],
-// //               scale: [1, 1.2, 1],
-// //             }}
-// //             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-// //           />
-// //           <motion.div
-// //             className="absolute bottom-20 right-10 w-24 h-24 bg-accent-hover/10 rounded-full blur-xl"
-// //             animate={{
-// //               x: [0, -40, 0],
-// //               y: [0, 20, 0],
-// //               scale: [1, 0.8, 1],
-// //             }}
-// //             transition={{
-// //               duration: 6,
-// //               repeat: Infinity,
-// //               ease: 'easeInOut',
-// //               delay: 2,
-// //             }}
-// //           />
-// //         </div>
-
-// //         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-// //           {/* Section Header */}
-// //           <div className="text-center mb-10">
-// //             {/* Header Section */}
-// //             <div className="w-full px-4">
-// //               <SectionHeader
-// //                 eyebrow="Pricing"
-// //                 title={
-// //                   <>
-// //                     Simple, Transparent
-// //                     <br />
-// //                     <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
-// //                       Pricing for Startups
-// //                     </span>
-// //                   </>
-// //                 }
-// //                 subtitle={
-// //                   <>
-// //                     Get a premium website or custom business solution
-// //                     <br className="hidden md:block" />
-// //                     that meets your goals and drives measurable growth.
-// //                   </>
-// //                 }
-// //                 align="center"
-// //                 spacing="lg"
-// //               />
-// //             </div>
-// //             <ScrollReveal delay={0.1}>
-// //               <div className="flex items-center justify-center mb-4 mt-6">
-// //                 <Link href="/30-min" target="_blank" className="relative group">
-// //                   {/* Button glow effect */}
-// //                   <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
-// //                   <Button
-// //                     size="lg"
-// //                     className="group relative bg-accent-primary hover:bg-accent-hover text-text-accent px-5 sm:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border border-accent-primary/50"
-// //                   >
-// //                     <motion.div
-// //                       className="bg-white rounded-xl flex items-center justify-center mr-3 shadow-lg transition-all duration-300 group-hover:shadow-xl w-10 h-10"
-// //                       whileHover={{
-// //                         boxShadow: '0 10px 25px -5px rgba(204, 255, 0, 0.4)',
-// //                       }}
-// //                     >
-// //                       <motion.span
-// //                         className="text-text-accent font-bold transition-all text-base duration-300"
-// //                         transition={{ duration: 0.3 }}
-// //                       >
-// //                         AT
-// //                       </motion.span>
-// //                     </motion.div>
-// //                     <span className="relative z-10 inline-flex items-center">
-// //                       <div className="translate-x-1 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-// //                         <div className="w-2 md:w-1 group-hover:w-[110px] md:group-hover:w-[70px] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-// //                           <span className="inline-flex items-center gap-2 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 will-change-transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap">
-// //                             <span className="text-text-accent/90 translate-x-1 group-hover:translate-x-0 group-hover:rotate-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] delay-100">
-// //                               +
-// //                             </span>
-// //                             <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-full bg-bg-primary/90 border border-border-primary/60 text-[10px] font-semibold tracking-wider text-text-secondary translate-x-1 group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] delay-150 shadow-[0_0_0_0_rgba(204,255,0,0)] group-hover:shadow-[0_0_18px_3px_rgba(204,255,0,0.25)]">
-// //                               YOU
-// //                               <span
-// //                                 aria-hidden
-// //                                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
-// //                               >
-// //                                 <span className="absolute inset-y-0 left-[-120%] w-[80%] bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 group-hover:left-[140%] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-// //                               </span>
-// //                             </span>
-// //                           </span>
-// //                         </div>
-// //                       </div>
-
-// //                       <span className="text-base font-semibold tracking-wide">
-// //                         Book a 15-min call
-// //                       </span>
-// //                     </span>
-// //                   </Button>
-// //                 </Link>
-// //               </div>
-// //               <p className="text-text-secondary text-sm max-w-md mx-auto">
-// //                 Starting from just{' '}
-// //                 <span className="underline text-accent-primary font-semibold">
-// //                   $5000
-// //                 </span>{' '}
-// //                 |{' '}
-// //                 <span className="underline text-accent-primary font-semibold">
-// //                   Monthly
-// //                 </span>
-// //               </p>
-// //             </ScrollReveal>
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       {/* Sticky Header Section - Always visible when scrolling through cards */}
-// //       <div className="sticky top-0 z-50 bg-bg-primary/90 backdrop-blur-md border-b border-border-primary/30 shadow-md">
-// //         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-// //           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-// //             <Link href="/30-min" target="_blank" className="relative group">
-// //               {/* Button glow effect */}
-// //               <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-// //               <Button
-// //                 size="md"
-// //                 className="group relative bg-accent-primary hover:bg-accent-hover text-text-accent px-4 py-2 rounded-full text-sm font-semibold shadow transition-all duration-200 border border-accent-primary/40"
-// //               >
-// //                 <span className="relative z-10 flex items-center">
-// //                   <span className="bg-white text-text-accent text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center mr-2">
-// //                     AT
-// //                   </span>
-// //                   <span className="whitespace-nowrap">Book a 15-min call</span>
-// //                 </span>
-// //               </Button>
-// //             </Link>
-// //             <p className="text-text-secondary text-xs sm:text-sm text-center">
-// //               Starting from just{' '}
-// //               <span className="underline text-accent-primary font-semibold">
-// //                 $5000
-// //               </span>{' '}
-// //               |{' '}
-// //               <span className="underline text-accent-primary font-semibold">
-// //                 Monthly
-// //               </span>
-// //             </p>
-// //           </div>
-// //         </div>
-// //       </div>
-
-// //       {/* Pricing Cards Section */}
-// //       <div className="relative flex flex-col py-10 gap-10 md:gap-20">
-// //         {services.map((service, index) => {
-// //           return (
-// //             <div
-// //               key={service.id}
-// //               className={isMobile ? '' : 'sticky'}
-// //               style={
-// //                 isMobile
-// //                   ? undefined
-// //                   : {
-// //                       top: `calc(80px + ${index * 80}px)`,
-// //                     }
-// //               }
-// //             >
-// //               <div
-// //                 className={`flex items-center justify-center ${isMobile ? 'mb-8' : ''}`}
-// //               >
-// //                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-// //                   <motion.div
-// //                     variants={{
-// //                       hidden: { opacity: 0, y: 60 },
-// //                       visible: { opacity: 1, y: 0 },
-// //                     }}
-// //                     initial="hidden"
-// //                     whileInView="visible"
-// //                     viewport={{ once: true, margin: '-40px' }}
-// //                     transition={{ duration: 0.6, ease: 'easeOut' }}
-// //                     className={`bg-bg-card/95 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden border border-border-primary hover:border-accent-primary/50 transition-all duration-500 group`}
-// //                     whileHover={{
-// //                       y: -5,
-// //                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4)',
-// //                     }}
-// //                     style={{
-// //                       background: `linear-gradient(135deg, 
-// //                         rgba(31, 31, 31, 0.95) 0%, 
-// //                         rgba(42, 42, 42, 0.95) 50%, 
-// //                         rgba(31, 31, 31, 0.95) 100%)`,
-// //                       transform: `scale(${1 - index * 0.02})`,
-// //                     }}
-// //                   >
-// //                     <div className="p-8 relative z-10">
-// //                       <div className="flex flex-col lg:flex-row">
-// //                         {/* Left Side - Service Info */}
-// //                         <div className="lg:flex-1 lg:pr-8">
-// //                           {/* Service Name */}
-// //                           <motion.h3
-// //                             className="text-2xl font-bold text-text-primary mb-6 group-hover:text-accent-primary transition-colors duration-300"
-// //                           >
-// //                             {service.name}
-// //                           </motion.h3>
-
-// //                           {/* Price */}
-// //                           <div className="mb-6">
-// //                             <motion.span
-// //                               className="text-5xl font-bold bg-gradient-to-r from-text-primary to-accent-primary bg-clip-text text-transparent"
-// //                               animate={{
-// //                                 backgroundPosition: [
-// //                                   '0% 50%',
-// //                                   '100% 50%',
-// //                                   '0% 50%',
-// //                                 ],
-// //                               }}
-// //                               transition={{ duration: 3, repeat: Infinity }}
-// //                               style={{
-// //                                 backgroundSize: '200% 200%',
-// //                               }}
-// //                             >
-// //                               {service.price}
-// //                             </motion.span>
-// //                           </div>
-
-// //                           {/* Description */}
-// //                           <motion.p
-// //                             className="text-text-secondary text-base mb-8 leading-relaxed group-hover:text-text-primary transition-colors duration-300"
-// //                             initial={{ opacity: 0.8 }}
-// //                             whileHover={{ opacity: 1 }}
-// //                           >
-// //                             {service.description}
-// //                           </motion.p>
-
-// //                           {/* CTA Button */}
-// //                           <motion.div
-// //                             whileTap={{ scale: 0.95 }}
-// //                           >
-// //                             <Button
-// //                               variant="primary"
-// //                               size="lg"
-// //                               className="mb-6 bg-accent-primary hover:bg-accent-hover text-text-accent px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn"
-// //                             >
-// //                               <span className="relative z-10">
-// //                                 Book a 15-min call
-// //                               </span>
-// //                               <motion.div
-// //                                 className="absolute inset-0 bg-gradient-to-r from-accent-hover to-accent-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-// //                                 animate={{
-// //                                   x: ['-100%', '100%'],
-// //                                 }}
-// //                                 transition={{
-// //                                   duration: 2,
-// //                                   repeat: Infinity,
-// //                                   ease: 'easeInOut',
-// //                                 }}
-// //                               />
-// //                             </Button>
-// //                           </motion.div>
-
-// //                           {/* Spots Available */}
-// //                           <motion.div
-// //                             className="flex items-center text-sm text-text-muted"
-// //                             animate={{
-// //                               opacity: [0.7, 1, 0.7],
-// //                             }}
-// //                             transition={{ duration: 2, repeat: Infinity }}
-// //                           >
-// //                             <motion.div
-// //                               className="w-2 h-2 bg-accent-primary rounded-full mr-3"
-// //                               animate={{
-// //                                 opacity: [1, 0.7, 1],
-// //                               }}
-// //                               transition={{ duration: 1.5, repeat: Infinity }}
-// //                             />
-// //                             <span>{service.spotsAvailable}</span>
-// //                           </motion.div>
-// //                         </div>
-
-// //                         {/* Middle Border */}
-// //                         <div className="hidden lg:block w-px bg-border-primary mx-8"></div>
-
-// //                         {/* Right Side - Features */}
-// //                         <div className="lg:flex-1 lg:pl-8 mt-8 lg:mt-0">
-// //                           <div className="space-y-4">
-// //                             {service.features.map((feature, featureIndex) => (
-// //                               <motion.div
-// //                                 key={feature}
-// //                                 className="flex items-center group/feature"
-// //                                 initial={{ opacity: 0, x: 20 }}
-// //                                 animate={{ opacity: 1, x: 0 }}
-// //                                 transition={{ delay: featureIndex * 0.1 }}
-// //                                 whileHover={{ x: 5 }}
-// //                               >
-// //                                 <motion.div
-// //                                   className="w-6 h-6 bg-accent-primary/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0 group-hover/feature:bg-accent-primary/30 transition-colors duration-300"
-// //                                 >
-// //                                   <motion.div
-// //                                     className="w-3 h-3 bg-accent-primary rounded-full"
-// //                                     animate={{
-// //                                       boxShadow: [
-// //                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-// //                                         '0 0 8px rgba(204, 255, 0, 0.6)',
-// //                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-// //                                       ],
-// //                                     }}
-// //                                     transition={{
-// //                                       duration: 2,
-// //                                       repeat: Infinity,
-// //                                       delay: featureIndex * 0.3,
-// //                                     }}
-// //                                   />
-// //                                 </motion.div>
-// //                                 <span className="text-text-secondary text-base group-hover/feature:text-text-primary transition-colors duration-300">
-// //                                   {feature}
-// //                                 </span>
-// //                               </motion.div>
-// //                             ))}
-// //                           </div>
-// //                         </div>
-// //                       </div>
-// //                     </div>
-// //                   </motion.div>
-// //                 </div>
-// //               </div>
-// //             </div>
-// //           );
-// //         })}
-// //       </div>
-// //     </>
-// //   );
-// // };
-
-// // export default PricingSection;
-
-
-// 'use client';
-
-// import React from 'react';
-// import { motion } from 'framer-motion';
-// import Button from '@/components/ui/Button';
-// import ScrollReveal from '@/components/animations/ScrollReveal';
-// import StaggerContainer from '@/components/animations/StaggerContainer';
-// import SectionHeader from '@/components/ui/SectionHeader';
-// import Link from 'next/link';
-
-// const PricingSection: React.FC = () => {
-//   const services = [
-//     {
-//       id: 'landing',
-//       name: 'Landing Creation',
-//       price: '$12000+',
-//       description:
-//         "Every business needs a landing, and it's never been easier to get one...",
-//       features: [
-//         '2 design concepts',
-//         'Full copywriting',
-//         'Unlimited 3D models',
-//         'Framer development',
-//         '2 rounds of revisions',
-//         '1 month of free support',
-//       ],
-//       spotsAvailable: '2 spots available',
-//       isClientChoice: true,
-//     },
-//     {
-//       id: 'product',
-//       name: 'Product Design',
-//       price: '$20000+',
-//       description:
-//         "Every business needs a website, and it's never been easier to get one.",
-//       features: [
-//         'User flow design concepts',
-//         'UI / UX design system',
-//         'Optimized for mobile',
-//         'Figma files',
-//         'Unlimited free updates',
-//       ],
-//       spotsAvailable: '3 spots available',
-//       isClientChoice: false,
-//     },
-//     {
-//       id: 'videos',
-//       name: 'Launch Videos',
-//       price: '$10000+',
-//       description:
-//         "Every business needs a website, and it's never been easier to get one.",
-//       features: [
-//         '2 design concepts',
-//         'Full copywriting',
-//         'Unlimited 3D models',
-//         'Framer development',
-//         '2 rounds of revisions',
-//         '1 month of free support',
-//       ],
-//       spotsAvailable: '5 spots available',
-//       isClientChoice: false,
-//     },
-//   ];
-
-//   const [isMobile, setIsMobile] = React.useState(false);
-//   const [isSticky, setIsSticky] = React.useState(false);
-
-//   React.useEffect(() => {
-//     const check = () => setIsMobile(window.innerWidth < 768);
-//     check();
-//     window.addEventListener('resize', check);
-//     return () => window.removeEventListener('resize', check);
-//   }, []);
-
-//   React.useEffect(() => {
-//     const handleScroll = () => {
-//       const ctaButton = document.getElementById('cta-button-original');
-//       if (ctaButton) {
-//         const rect = ctaButton.getBoundingClientRect();
-//         // Show sticky when original button scrolls past top
-//         setIsSticky(rect.bottom < 0);
-//       }
-//     };
-
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, []);
-
-//   return (
-//     <>
-//       <section
-//         className="py-12 bg-transparent relative overflow-hidden"
-//         id="pricing"
-//       >
-//         {/* Animated Background Elements */}
-//         <div className="absolute inset-0 overflow-hidden">
-//           <motion.div
-//             className="absolute top-20 left-10 w-32 h-32 bg-accent-primary/10 rounded-full blur-2xl"
-//             animate={{
-//               x: [0, 50, 0],
-//               y: [0, -30, 0],
-//               scale: [1, 1.2, 1],
-//             }}
-//             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-//           />
-//           <motion.div
-//             className="absolute bottom-20 right-10 w-24 h-24 bg-accent-hover/10 rounded-full blur-xl"
-//             animate={{
-//               x: [0, -40, 0],
-//               y: [0, 20, 0],
-//               scale: [1, 0.8, 1],
-//             }}
-//             transition={{
-//               duration: 6,
-//               repeat: Infinity,
-//               ease: 'easeInOut',
-//               delay: 2,
-//             }}
-//           />
-//         </div>
-
-//         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-//           {/* Section Header - Always Visible */}
-//           <div className="text-center mb-10">
-//             {/* Header Section */}
-//             <div className="w-full px-4">
-//               <SectionHeader
-//                 eyebrow="Pricing"
-//                 title={
-//                   <>
-//                     Simple, Transparent
-//                     <br />
-//                     <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
-//                       Pricing for Startups
-//                     </span>
-//                   </>
-//                 }
-//                 subtitle={
-//                   <>
-//                     Get a premium website or custom business solution
-//                     <br className="hidden md:block" />
-//                     that meets your goals and drives measurable growth.
-//                   </>
-//                 }
-//                 align="center"
-//                 spacing="lg"
-//               />
-//             </div>
-
-//             {/* Original CTA Button */}
-//             <ScrollReveal delay={0.1}>
-//               <div className="flex items-center justify-center mb-4 mt-6" id="cta-button-original">
-//                 <Link href="/30-min" target="_blank" className="relative group">
-//                   {/* Button glow effect */}
-//                   <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
-//                   <Button
-//                     size="lg"
-//                     className="group relative bg-accent-primary hover:bg-accent-hover text-text-accent px-5 sm:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 border border-accent-primary/50"
-//                   >
-//                     <motion.div
-//                       className="bg-white rounded-xl flex items-center justify-center mr-3 shadow-lg transition-all duration-300 group-hover:shadow-xl w-10 h-10"
-//                       whileHover={{
-//                         boxShadow: '0 10px 25px -5px rgba(204, 255, 0, 0.4)',
-//                       }}
-//                     >
-//                       <motion.span
-//                         className="text-text-accent font-bold transition-all text-base duration-300"
-//                         transition={{ duration: 0.3 }}
-//                       >
-//                         AT
-//                       </motion.span>
-//                     </motion.div>
-//                     <span className="relative z-10 inline-flex items-center">
-//                       <div className="translate-x-1 group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-//                         <div className="w-2 md:w-1 group-hover:w-[110px] md:group-hover:w-[70px] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-//                           <span className="inline-flex items-center gap-2 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 will-change-transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] whitespace-nowrap">
-//                             <span className="text-text-accent/90 translate-x-1 group-hover:translate-x-0 group-hover:rotate-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] delay-100">
-//                               +
-//                             </span>
-//                             <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-full bg-bg-primary/90 border border-border-primary/60 text-[10px] font-semibold tracking-wider text-text-secondary translate-x-1 group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] delay-150 shadow-[0_0_0_0_rgba(204,255,0,0)] group-hover:shadow-[0_0_18px_3px_rgba(204,255,0,0.25)]">
-//                               YOU
-//                               <span
-//                                 aria-hidden
-//                                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
-//                               >
-//                                 <span className="absolute inset-y-0 left-[-120%] w-[80%] bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 group-hover:left-[140%] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-//                               </span>
-//                             </span>
-//                           </span>
-//                         </div>
-//                       </div>
-
-//                       <span className="text-base font-semibold tracking-wide">
-//                         Book a 15-min call
-//                       </span>
-//                     </span>
-//                   </Button>
-//                 </Link>
-//               </div>
-//               <p className="text-text-secondary text-sm max-w-md mx-auto">
-//                 Starting from just{' '}
-//                 <span className="underline text-accent-primary font-semibold">
-//                   $5000
-//                 </span>{' '}
-//                 |{' '}
-//                 <span className="underline text-accent-primary font-semibold">
-//                   Monthly
-//                 </span>
-//               </p>
-//             </ScrollReveal>
-//           </div>
-//         </div>
-//       </section>
-
-     
-
-//       {/* Sticky Cards Section - Cards stick in middle */}
-//       <div className="relative flex flex-col mb-20 gap-10 md:gap-20">
-//         {services.map((service, index) => {
-//           return (
-//             <div
-//               key={service.id}
-//               className={isMobile ? '' : 'sticky'}
-//               style={
-//                 isMobile
-//                   ? undefined
-//                   : {
-//                       top: `calc(50% - 300px + ${index * 40}px)`,
-//                     }
-//               }
-//             >
-//               <div
-//                 className={`flex items-center justify-center ${isMobile ? 'mb-8' : ''}`}
-//               >
-//                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-//                   <motion.div
-//                     variants={{
-//                       hidden: { opacity: 0, y: 60 },
-//                       visible: { opacity: 1, y: 0 },
-//                     }}
-//                     initial="hidden"
-//                     whileInView="visible"
-//                     viewport={{ once: true, margin: '-40px' }}
-//                     transition={{ duration: 0.6, ease: 'easeOut' }}
-//                     className={`bg-bg-card/95 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden border border-border-primary hover:border-accent-primary/50 transition-all duration-500 group`}
-//                     whileHover={{
-//                       y: -5,
-//                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4)',
-//                     }}
-//                     style={{
-//                       background: `linear-gradient(135deg, 
-//                         rgba(31, 31, 31, 0.95) 0%, 
-//                         rgba(42, 42, 42, 0.95) 50%, 
-//                         rgba(31, 31, 31, 0.95) 100%)`,
-//                       transform: `scale(${1 - index * 0.02})`,
-//                     }}
-//                   >
-//                     <div className="p-8 relative z-10">
-//                       <div className="flex flex-col lg:flex-row">
-//                         {/* Left Side - Service Info */}
-//                         <div className="lg:flex-1 lg:pr-8">
-//                           {/* Service Name */}
-//                           <motion.h3
-//                             className="text-2xl font-bold text-text-primary mb-6 group-hover:text-accent-primary transition-colors duration-300"
-//                           >
-//                             {service.name}
-//                           </motion.h3>
-
-//                           {/* Price */}
-//                           <div className="mb-6">
-//                             <motion.span
-//                               className="text-5xl font-bold bg-gradient-to-r from-text-primary to-accent-primary bg-clip-text text-transparent"
-//                               animate={{
-//                                 backgroundPosition: [
-//                                   '0% 50%',
-//                                   '100% 50%',
-//                                   '0% 50%',
-//                                 ],
-//                               }}
-//                               transition={{ duration: 3, repeat: Infinity }}
-//                               style={{
-//                                 backgroundSize: '200% 200%',
-//                               }}
-//                             >
-//                               {service.price}
-//                             </motion.span>
-//                           </div>
-
-//                           {/* Description */}
-//                           <motion.p
-//                             className="text-text-secondary text-base mb-8 leading-relaxed group-hover:text-text-primary transition-colors duration-300"
-//                             initial={{ opacity: 0.8 }}
-//                             whileHover={{ opacity: 1 }}
-//                           >
-//                             {service.description}
-//                           </motion.p>
-
-//                           {/* CTA Button */}
-//                           <motion.div
-//                             whileTap={{ scale: 0.95 }}
-//                           >
-//                             <Button
-//                               variant="primary"
-//                               size="lg"
-//                               className="mb-6 bg-accent-primary hover:bg-accent-hover text-text-accent px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group/btn"
-//                             >
-//                               <span className="relative z-10">
-//                                 Book a 15-min call
-//                               </span>
-//                               <motion.div
-//                                 className="absolute inset-0 bg-gradient-to-r from-accent-hover to-accent-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
-//                                 animate={{
-//                                   x: ['-100%', '100%'],
-//                                 }}
-//                                 transition={{
-//                                   duration: 2,
-//                                   repeat: Infinity,
-//                                   ease: 'easeInOut',
-//                                 }}
-//                               />
-//                             </Button>
-//                           </motion.div>
-
-//                           {/* Spots Available */}
-//                           <motion.div
-//                             className="flex items-center text-sm text-text-muted"
-//                             animate={{
-//                               opacity: [0.7, 1, 0.7],
-//                             }}
-//                             transition={{ duration: 2, repeat: Infinity }}
-//                           >
-//                             <motion.div
-//                               className="w-2 h-2 bg-accent-primary rounded-full mr-3"
-//                               animate={{
-//                                 opacity: [1, 0.7, 1],
-//                               }}
-//                               transition={{ duration: 1.5, repeat: Infinity }}
-//                             />
-//                             <span>{service.spotsAvailable}</span>
-//                           </motion.div>
-//                         </div>
-
-//                         {/* Middle Border */}
-//                         <div className="hidden lg:block w-px bg-border-primary mx-8"></div>
-
-//                         {/* Right Side - Features */}
-//                         <div className="lg:flex-1 lg:pl-8 mt-8 lg:mt-0">
-//                           <div className="space-y-4">
-//                             {service.features.map((feature, featureIndex) => (
-//                               <motion.div
-//                                 key={feature}
-//                                 className="flex items-center group/feature"
-//                                 initial={{ opacity: 0, x: 20 }}
-//                                 animate={{ opacity: 1, x: 0 }}
-//                                 transition={{ delay: featureIndex * 0.1 }}
-//                                 whileHover={{ x: 5 }}
-//                               >
-//                                 <motion.div
-//                                   className="w-6 h-6 bg-accent-primary/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0 group-hover/feature:bg-accent-primary/30 transition-colors duration-300"
-//                                 >
-//                                   <motion.div
-//                                     className="w-3 h-3 bg-accent-primary rounded-full"
-//                                     animate={{
-//                                       boxShadow: [
-//                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-//                                         '0 0 8px rgba(204, 255, 0, 0.6)',
-//                                         '0 0 0px rgba(204, 255, 0, 0.3)',
-//                                       ],
-//                                     }}
-//                                     transition={{
-//                                       duration: 2,
-//                                       repeat: Infinity,
-//                                       delay: featureIndex * 0.3,
-//                                     }}
-//                                   />
-//                                 </motion.div>
-//                                 <span className="text-text-secondary text-base group-hover/feature:text-text-primary transition-colors duration-300">
-//                                   {feature}
-//                                 </span>
-//                               </motion.div>
-//                             ))}
-//                           </div>
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </motion.div>
-//                 </div>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default PricingSection;
-
-
 "use client";
+import { Card, CardContent, CardHeader } from "@/components/ui/card1";
+import { Sparkles as SparklesComp } from "@/components/ui/sparkles";
 
-import Image from "next/image";
-import { Quote } from "lucide-react";
-import Earth from "@/components/ui/globe";
-import Marquee from "@/components/ui/marquee1";
-import AnimatedDots from "@/components/ui/animate-dots";
-import SectionHeader from "@/components/ui/SectionHeader";
+import NumberFlow from "@number-flow/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { TimelineContent } from "@/components/ui/timeline-animation";
+import VerticalCutReveal from "@/components/ui/vertical-cut-reveal";
+import TestimonialsBadge from "@/components/ui/BadgeShadow";
+import SectionHeader from "../ui/SectionHeader";
+import { homeData } from "./data";
 
-interface Testimonial {
+interface Package {
   id: number;
   name: string;
-  title: string;
-  content: string;
-  rating: number;
-  image: string;
-  logo: string;
+  slug: string;
+  price: string;
+  isFeatured: boolean;
+  description: string;
+  features: string[];
+  billingCycle: string;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: "Mark Ramirez",
-    logo: `${process.env.NEXT_PUBLIC_URL || ''}/logos/Logo-1.svg`,
-    title: "Owner of Lotus Spa",
-    content:
-      "Their team took our wellness brand and elevated it to new heights with their thoughtful designs and strategic branding, they've helped us create a cohesive and compelling brand identity.",
-    rating: 5,
-    image: `${process.env.NEXT_PUBLIC_URL || ''}/people/image1.png`,
-  },
-  {
-    id: 2,
-    name: "Thomas Gala",
-    logo: `${process.env.NEXT_PUBLIC_URL || ''}/logos/Logo-3.svg`,
-    title: "Founder, Earthish Wellness",
-    content:
-      "As a fellow creative professional, I have high standards when it comes to design. Kelola not only met but excelling brand identity.",
-    rating: 5,
-    image: `${process.env.NEXT_PUBLIC_URL || ''}/people/image3.png`,
-  },
-  {
-    id: 4,
-    name: "Steven Sunny",
-    logo: `${process.env.NEXT_PUBLIC_URL || ''}/logos/Logo-3.svg`,
-    title: "CEO, Charles Health",
-    content:
-      "Their team took our wellness brand and elevated it to new heights with their thoughtful designs and strategic branding, they've helped us create a cohesive and compelling brand identity.",
-    rating: 5,
-    image: `${process.env.NEXT_PUBLIC_URL || ''}/people/image4.png`,
-  },
-];
 
-function ClientFeedback() {
-  const testimonialsRef = useRef<HTMLDivElement>(null);
-  
-  // State for toggle functionality
-  const [activeView, setActiveView] = useState<'grid' | 'list'>('grid');
-  
+const PricingSwitch = ({
+  onSwitch,
+  selected,
+}: {
+  onSwitch: (value: string) => void;
+  selected: string;
+}) => {
+  const handleSwitch = (value: string) => {
+    onSwitch(value);
+  };
+
+  return (
+    <div className="flex justify-center">
+      <div className="relative z-[10000] mx-auto flex w-fit rounded-full bg-neutral-900 border border-border-primary p-1">
+        <button
+          onClick={() => handleSwitch("0")}
+          className={cn(
+            "relative z-10 w-fit h-10 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
+            selected === "0" ? "text-text-accent" : "text-text-secondary"
+          )}
+        >
+          {selected === "0" && (
+            <motion.span
+              layoutId={"switch"}
+              className="absolute top-0 left-0 h-10 w-full rounded-full shadow-lg shadow-accent-primary/30 bg-gradient-to-t from-accent-primary to-accent-hover"
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            />
+          )}
+          <span className="relative">Monthly</span>
+        </button>
+
+        <button
+          onClick={() => handleSwitch("1")}
+          className={cn(
+            "relative z-10 w-fit h-10 shrink-0 rounded-full sm:px-6 px-3 sm:py-2 py-1 font-medium transition-colors",
+            selected === "1" ? "text-text-accent" : "text-text-secondary"
+          )}
+        >
+          {selected === "1" && (
+            <motion.span
+              layoutId={"switch"}
+              className="absolute top-0 left-0 h-10 w-full rounded-full shadow-lg shadow-accent-primary/30 bg-gradient-to-t from-accent-primary to-accent-hover"
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            />
+          )}
+          <span className="relative flex items-center gap-2">Yearly</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default function PricingSection({
+  monthlyPlans,
+  yearlyPlans,
+}: {
+  monthlyPlans: Package[];
+  yearlyPlans: Package[];
+}) {
+  const [isYearly, setIsYearly] = useState(false);
+  const pricingRef = useRef<HTMLDivElement>(null);
+
   const revealVariants = {
     visible: (i: number) => ({
       y: 0,
@@ -1275,162 +103,166 @@ function ClientFeedback() {
     },
   };
 
-  return (
-    <>
-      <section className="relative h-full min-h-screen py-14 bg-black text-white" id="testimonials" ref={testimonialsRef}>
-        <div className="absolute bottom-0 left-0 z-[2] right-0 top-0 [mask-image:radial-gradient(ellipse_40%_50%_at_50%_0%,#000_60%,transparent_110%)]"></div>
+  const togglePricingPeriod = (value: string) => {
+    setIsYearly(Number.parseInt(value) === 1);
+    console.log("Toggled pricing period to:", isYearly ? "Yearly" : "Monthly");
+  };
 
-        <SectionHeader 
-          eyebrow="Testimonials"
+  // Get the current plans based on the selected period
+  const currentPlans = isYearly ? yearlyPlans : monthlyPlans;
+
+  return (
+    <div
+      className=" min-h-screen  mx-auto relative bg-black overflow-x-hidden"
+      ref={pricingRef}
+      id="pricing"
+    >
+      {/* Clip-path shadow at the top */}
+      {/* <div 
+        className="absolute top-0 left-0 right-0 h-32 z-10"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,20) 0%, transparent 100%)',
+        }}
+      /> */}
+      <TimelineContent
+        animationNum={4}
+        timelineRef={pricingRef}
+        customVariants={revealVariants}
+        className="absolute top-0  h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] "
+      >
+        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px] "></div>
+        <SparklesComp
+          density={1800}
+          direction="bottom"
+          speed={1}
+          color="#FFFFFF"
+          className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
+        />
+      </TimelineContent>
+
+      <div className="w-full px-4 relative">
+        {/* <div className="absolute h-full w-full top-20 [mask-image:radial-gradient(30%_80%,white,transparent)] before:absolute  before:inset-0 before:bg-[radial-gradient(circle_at_top_center,#FF6A00,transparent_40%)] before:opacity-50   "></div> */}
+        {/* Header Section */}
+        <SectionHeader
+          eyebrow="Pricing"
           title={
             <>
-              Don't just listen to us, <br />
-              <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
-               people already have
-              </span>
+              Our Pricing
+              {/* <br /> */}
+              {/* <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
+                Step by Step
+              </span> */}
             </>
           }
-          subtitle="Let's hear how our clients feel about our service"
+          subtitle={
+            <>
+              Get a premium website or custom business solution
+              <br className="hidden md:block" />
+              that meets your goals and drives measurable growth.
+            </>
+          }
           align="center"
           spacing="lg"
         />
 
-        <div className="absolute top-72 flex justify-center w-full">
-          <div className="absolute h-fit w-fit">
-            <AnimatedDots />
-          </div>
-          <Earth className="max-w-[500px] z-[0]" />
-        </div>
-        
-        <div className="relative z-[2] sm:pt-10 pt-24">
-          <>
-            {/* Removed fixed height container to prevent cropping */}
-            <div className="overflow-hidden pb-2">
-              <Marquee 
-                // pauseOnHover 
-                className="[--duration:15s]"
-                pauseOnReducedMotion={false} // Removed performance optimization
-              >
-                {testimonials.map((testimonial) => (
-                  <div
-                    key={testimonial.id}
-                    className="bg-neutral-950 border border-gray-900 sm:w-[28rem] w-[20rem] sm:p-6 p-4 rounded-xl transition-all duration-300 testimonial-card hover:border-accent-primary flex flex-col h-full"
-                    style={{
-                      willChange: "transform",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                      perspective: "1000px"
-                    }}
-                  >
-                    <div className="flex mb-3">
-                      <Image
-                        src={testimonial.logo}
-                        alt={`${testimonial.name} company logo`}
-                        width={112}
-                        height={40}
-                        className="w-28"
-                        quality={80} // Fixed quality
-                        sizes="(max-width: 768px) 50vw, 112px"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content flex-grow">
-                      <Quote className="fill-accent-primary sm:w-5 sm:h-5 w-4 h-4 shrink-0 rotate-180 mt-1" />
-                      <span>{testimonial.content}</span>
-                    </p>
-                    <div className="flex items-center mt-auto">
-                      <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-accent-primary">
-                        <Image
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          width={48}
-                          height={48}
-                          className="object-cover"
-                          quality={80} // Fixed quality
-                          sizes="48px"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-bold text-white text-base">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-accent-primary">
-                          {testimonial.title}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Marquee>
-            </div>
-            
-            {/* Removed fixed height container to prevent cropping */}
-            <div className="overflow-hidden">
-              <Marquee 
-                // pauseOnHover 
-                reverse 
-                className="[--duration:15s]"
-                pauseOnReducedMotion={false} // Removed performance optimization
-              >
-                {testimonials.map((testimonial) => (
-                  <div
-                    key={`reverse-${testimonial.id}`}
-                    className="bg-neutral-950 border border-gray-900 sm:w-[28rem] w-[20rem] sm:p-6 p-4 rounded-xl transition-all duration-300 testimonial-card hover:border-accent-primary flex flex-col h-full"
-                    style={{
-                      willChange: "transform",
-                      transform: "translateZ(0)",
-                      backfaceVisibility: "hidden",
-                      perspective: "1000px"
-                    }}
-                  >
-                    <div className="flex mb-3">
-                      <Image
-                        src={testimonial.logo}
-                        alt={`${testimonial.name} company logo`}
-                        width={112}
-                        height={40}
-                        className="w-28"
-                        quality={80} // Fixed quality
-                        sizes="(max-width: 768px) 50vw, 112px"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content flex-grow">
-                      <Quote className="fill-accent-primary sm:w-5 sm:h-5 w-4 h-4 shrink-0 rotate-180 mt-1" />
-                      <span>{testimonial.content}</span>
-                    </p>
-                    <div className="flex items-center mt-auto">
-                      <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-accent-primary">
-                        <Image
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          width={48}
-                          height={48}
-                          className="object-cover"
-                          quality={80} // Fixed quality
-                          sizes="48px"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-bold text-white text-base">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-accent-primary">
-                          {testimonial.title}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Marquee>
-            </div>
-          </>
-        </div>
-      </section>
-    </>
+        {/* Pricing Toggle */}
+        <TimelineContent
+          as="div"
+          animationNum={1}
+          timelineRef={pricingRef}
+          customVariants={revealVariants}
+          className="flex justify-center mb-8 relative z-50"
+        >
+          <PricingSwitch
+            onSwitch={togglePricingPeriod}
+            selected={isYearly ? "1" : "0"}
+          />
+        </TimelineContent>
+      </div>
+      <div
+        className="absolute top-0 left-[10%] right-[10%] w-[80%] h-full z-0"
+        style={{
+          backgroundImage: `
+        radial-gradient(circle at center, #ccff00 0%, transparent 70%)
+      `,
+          opacity: 0.6,
+          mixBlendMode: "multiply",
+        }}
+      />
+
+      <div className="grid md:grid-cols-3 max-w-6xl gap-4 py-6 mx-auto ">
+        {currentPlans.slice(0, 3).map((plan: Package, index: number) => (
+          <TimelineContent
+            key={`${plan.id}-${isYearly ? "yearly" : "monthly"}`}
+            as="div"
+            animationNum={2 + index}
+            timelineRef={pricingRef}
+            customVariants={revealVariants}
+          >
+            <Card
+              className={`relative text-white border-neutral-800 transition-all duration-500 hover:scale-[1.02] hover:border-accent-primary/50 ${
+                plan.isFeatured
+                  ? "bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 shadow-[0px_-13px_300px_0px_#ccff00] z-20 hover:shadow-[0px_-13px_320px_0px_#ccff00]"
+                  : "bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 z-10 hover:shadow-[0px_-5px_50px_0px_rgba(204,255,0,0.1)]"
+              }`}
+            >
+              <CardHeader className="text-left ">
+                <div className="flex justify-between">
+                  <h3 className="text-3xl mb-2">{plan.name}</h3>
+                </div>
+                <div className="flex items-baseline">
+                  <span className="text-4xl font-semibold ">
+                    $
+                    <NumberFlow
+                      format={{
+                        currency: "USD",
+                      }}
+                      value={parseFloat(plan.price)}
+                      className="text-4xl font-semibold"
+                    />
+                  </span>
+                  <span className="text-gray-300 ml-1">
+                    /{plan.billingCycle === "yearly" ? "year" : "month"}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-300 mb-4">{plan.description}</p>
+              </CardHeader>
+
+              <CardContent className="pt-0">
+                <button
+                  className={`w-full mb-6 p-4 text-xl rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    plan.isFeatured
+                      ? "bg-gradient-to-t from-accent-primary to-accent-hover shadow-lg shadow-accent-primary border border-accent-primary text-black hover:shadow-xl hover:shadow-accent-primary/50"
+                      : "bg-gradient-to-t from-neutral-950 to-neutral-600 shadow-lg shadow-neutral-900 border border-neutral-800 text-white hover:border-accent-primary/30 hover:shadow-accent-primary/20"
+                  }`}
+                >
+                  Get Started
+                </button>
+
+                <div className="space-y-3 pt-4 border-t border-neutral-700">
+                  <h4 className="font-medium text-base mb-3">Includes:</h4>
+                  <ul className="space-y-2">
+                    {plan.features.map(
+                      (feature: string, featureIndex: number) => (
+                        <li
+                          key={featureIndex}
+                          className="flex items-center gap-2"
+                        >
+                          <span className="h-2.5 w-2.5 bg-neutral-500 rounded-full grid place-content-center"></span>
+                          <span className="text-sm text-gray-300">
+                            {feature}
+                          </span>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </TimelineContent>
+        ))}
+      </div>
+    </div>
   );
 }
-
-export default ClientFeedback;
