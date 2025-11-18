@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SocialProofBadge from '@/components/ui/SocialProofBadge';
+import Booking from '@/components/sections/booking';
 
 const BookingPage: React.FC = () => {
   useEffect(() => {
@@ -117,7 +118,7 @@ const BookingPage: React.FC = () => {
             </h1>
 
             {/* Subtitle */}
-            <div className="text-lg text-text-secondary mb-2">
+            {/* <div className="text-lg text-text-secondary mb-2">
               Please select the time that fits you or just
             </div>
             <div className="text-lg text-text-secondary">
@@ -139,11 +140,11 @@ const BookingPage: React.FC = () => {
               >
                 WhatsApp
               </a>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Spots  */}
-          <motion.div
+          {/* <motion.div
             className="flex justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -155,7 +156,7 @@ const BookingPage: React.FC = () => {
                 2 spots available
               </span>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 
@@ -166,27 +167,7 @@ const BookingPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <div className="bg-bg-card rounded-2xl shadow-xl border border-border-primary overflow-hidden min-h-[600px] backdrop-blur-sm">
-          {/* Cal.com Embed - Replace 'your-username' with your actual Cal.com username */}
-          <iframe
-            src="https://cal.com/your-username/15min"
-            width="100%"
-            height="600"
-            frameBorder="0"
-            title="Schedule a meeting"
-            className="rounded-2xl"
-            loading="lazy"
-          />
-
-          {/* Alternative: Inline embed (uncomment and replace the iframe above if you prefer) */}
-          {/* 
-          <div 
-            data-cal-link="your-username/15min"
-            data-cal-config='{"layout":"month_view","theme":"light"}'
-            className="min-h-[600px]"
-          />
-          */}
-        </div>
+        <Booking/>
 
         {/* Cal.com Branding */}
         {/* <div className="text-center mt-8">
