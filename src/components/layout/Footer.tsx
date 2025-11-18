@@ -1,47 +1,48 @@
-'use client';
-import { motion } from 'framer-motion';
+"use client";
+import { motion } from "framer-motion";
 import {
   Github,
   Twitter,
   Linkedin,
   Instagram,
   MessageCircle,
-} from 'lucide-react';
-import FadeInUp from '../animations/FadeInUp';
-import Button from '../ui/Button';
-import Link from 'next/link';
+} from "lucide-react";
+import FadeInUp from "../animations/FadeInUp";
+import Button from "../ui/Button";
+import Link from "next/link";
+import { AnimatedButton } from "../custom/button";
 
 const Footer: React.FC = () => {
   const socialLinks = [
     {
       icon: Twitter,
-      href: '#',
-      label: 'Twitter',
-      className: 'hover:text-blue-400',
+      href: "#",
+      label: "Twitter",
+      className: "hover:text-blue-400",
     },
     {
       icon: Linkedin,
-      href: '#',
-      label: 'LinkedIn',
-      className: 'hover:text-blue-600',
+      href: "#",
+      label: "LinkedIn",
+      className: "hover:text-blue-600",
     },
     {
       icon: Instagram,
-      href: '#',
-      label: 'Instagram',
-      className: 'hover:text-pink-500',
+      href: "#",
+      label: "Instagram",
+      className: "hover:text-pink-500",
     },
     {
       icon: Github,
-      href: '#',
-      label: 'GitHub',
-      className: 'hover:text-gray-400',
+      href: "#",
+      label: "GitHub",
+      className: "hover:text-gray-400",
     },
     {
       icon: MessageCircle,
-      href: '#',
-      label: 'WhatsApp',
-      className: 'hover:text-green-500',
+      href: "#",
+      label: "WhatsApp",
+      className: "hover:text-green-500",
     },
   ];
 
@@ -85,18 +86,13 @@ const Footer: React.FC = () => {
                 <div className="inline-flex items-start">
                   <Link
                     href="/30-min"
-                    target="_blank"
+                    // target="_blank"
                     className="relative group"
                   >
                     {/* Button glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-accent-primary to-accent-hover rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 scale-110"></div>
 
-                    <Button
-                      size="lg"
-                      className="relative bg-accent-primary hover:bg-accent-hover text-text-accent px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border border-accent-primary/50"
-                    >
-                      <span className="relative z-10">Book a 15-min call</span>
-                    </Button>
+                    <AnimatedButton>Book a 15-min call </AnimatedButton>
                   </Link>
                 </div>
               </FadeInUp>
@@ -150,12 +146,12 @@ const Footer: React.FC = () => {
             className="relative overflow-hidden cursor-pointer group"
           >
             <motion.div
-              initial={{ x: '0%' }}
-              animate={{ x: '-50%' }}
+              initial={{ x: "0%" }}
+              animate={{ x: "-50%" }}
               transition={{
                 repeat: Infinity,
                 duration: 15,
-                ease: 'linear',
+                ease: "linear",
               }}
               whileHover={{
                 transition: { duration: 30 },
@@ -163,7 +159,7 @@ const Footer: React.FC = () => {
               className="w-[200%] flex relative"
             >
               <motion.div
-                transition={{ type: 'tween', duration: 0.3 }}
+                transition={{ type: "tween", duration: 0.3 }}
                 className="w-full relative transform-gpu"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.2 }}
@@ -174,7 +170,7 @@ const Footer: React.FC = () => {
                 </div>
               </motion.div>
               <motion.div
-                transition={{ type: 'tween', duration: 0.3 }}
+                transition={{ type: "tween", duration: 0.3 }}
                 className="w-full relative transform-gpu"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.2 }}
