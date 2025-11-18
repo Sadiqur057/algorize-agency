@@ -19,27 +19,36 @@ import RotatingMarqueeSection from "@/components/sections/RotatingMarqueeSection
 import PricingSection from "@/components/sections/PricingSection";
 import PlatformComparisonSection from "@/components/sections/PlatformComparisonSection";
 import PlatformComparisonSectionOld from "@/components/sections/PlatformComparisonSection-old";
+import { homeData } from "@/components/sections/data";
 
 export default function Home() {
+  const data = homeData.data;
   return (
     <main className="min-h-screen bg-bg-primary">
       <HeroSection />
       {/* <ProjectsSection /> */}
       {/* <FeaturesSection /> */}
       {/* <FlexibleElementsSection /> */}
-      <RotatingMarqueeSection />
+      <RotatingMarqueeSection projects={data?.projects || []} />
       <AgencyProblemsSection />
-      <ProcessSection />
-      <WhatWeDoSection />
+      <ProcessSection processList={data?.processList || []} />
+      <WhatWeDoSection services={data?.services || []} />
       <PlatformComparisonSection />
       {/* <PlatformComparisonSectionOld /> */}
       {/* <MarqueeSection /> */}
       <Carv />
       {/* <TechStackSection /> */}
-      <Feature3 />
-      <ClientFeedback />
-      <PricingSection />
-      <FAQSection />
+      <Feature3
+        projects={data?.projects || []}
+        reviews={data?.reviews || []}
+        technologies={data?.technologies || []}
+      />
+      <ClientFeedback reviews={data?.reviews || []} />
+      <PricingSection
+        monthlyPlans={data?.packages?.monthly || []}
+        yearlyPlans={data?.packages?.yearly || []}
+      />
+      <FAQSection faqs={data?.faqs} />
     </main>
   );
 }
