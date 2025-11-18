@@ -3,6 +3,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import { AnimatedButton } from '../custom/button';
 
 const AgencyProblemsSection: React.FC = () => {
   return (
@@ -19,12 +20,15 @@ const AgencyProblemsSection: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           {/* Heading */}
-          <div className="pt-16 md:pt-24 lg:pt-32">
+          <div className="pt-16 md:pt-24 lg:pt-32 flex justify-between items-center flex-wrap gap-4">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] max-w-3xl">
               Digital agency problems
               <br className="hidden sm:block" />
               and their best solutions
             </h1>
+            <AnimatedButton>
+              Consult with us
+            </AnimatedButton>
           </div>
 
           {/* Content grid */}
