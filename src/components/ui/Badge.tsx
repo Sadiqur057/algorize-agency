@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/lib';
+import { cn } from '@/lib/index';
 import { BadgeProps } from '@/types/components';
 
 const Badge: React.FC<BadgeProps> = ({
