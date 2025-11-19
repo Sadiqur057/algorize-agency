@@ -107,7 +107,7 @@ const BookingPage: React.FC = () => {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6 relative">
               <span className="relative z-10">
                 Book a{' '}
-                <span className="bg-gradient-to-r from-accent-primary via-accent-hover to-accent-primary bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-accent-primary via-accent-hover to-accent-primary bg-clip-text text-transparent">
                   15-min call
                 </span>
               </span>
