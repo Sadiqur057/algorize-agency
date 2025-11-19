@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Users,
@@ -43,7 +42,6 @@ interface Project {
 }
 
 const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
-  console.log('Projects in RotatingMarqueeSection:', projects);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,28 +53,6 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProject(null), 300);
-  };
-
-  // Animation variants for framer-motion
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
   };
 
   return (
@@ -127,6 +103,33 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
           backface-visibility: hidden;
           perspective: 1000px;
         }
+        .project-card {
+          transform: translateZ(0) scale(1);
+          transition: transform 0.3s ease-out;
+        }
+        .project-card:hover {
+          transform: translateZ(0) scale(1.02);
+        }
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.5s ease-out forwards;
+          opacity: 0;
+        }
+        .animate-delay-100 {
+          animation-delay: 0.1s;
+        }
+        .animate-delay-200 {
+          animation-delay: 0.2s;
+        }
       `}</style>
 
       <main
@@ -141,26 +144,14 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
         <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1200px] rounded-full blur-3xl bg-linear-to-r from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10"></div>
 
         <section className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <motion.div
-            className="mb-10 md:mb-14"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-          >
-            <motion.h2
-              className="text-4xl md:text-6xl font-semibold tracking-tight text-white"
-              variants={itemVariants}
-            >
+          <div className="mb-10 md:mb-14">
+            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white animate-fade-in-up">
               Featured projects
-            </motion.h2>
-            <motion.p
-              className="mt-4 max-w-2xl text-sm md:text-base text-zinc-400/90"
-              variants={itemVariants}
-            >
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm md:text-base text-zinc-400/90 animate-fade-in-up animate-delay-100">
               A selection of projects showcasing our expertise and creativity in web development.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* Row 1 */}
           <div className="relative -rotate-2 md:-rotate-6 marquee-row">
@@ -169,11 +160,9 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                 {/* Group A */}
                 <div className="flex gap-6">
                   {projects.map((project) => (
-                    <motion.article
+                    <article
                       key={project.id}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="project-card group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       onClick={() => handleProjectClick(project)}
                     >
                       <Image
@@ -182,10 +171,10 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                         fill
                         className="h-full w-full object-cover transition duration-500 ease-out"
                       />
-                      
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
@@ -200,18 +189,16 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                           <ArrowUpRight className="h-4 w-4 text-white" />
                         </div>
                       </div>
-                    </motion.article>
+                    </article>
                   ))}
                 </div>
 
                 {/* Group B (duplicate for seamless loop) */}
                 <div className="flex gap-6" aria-hidden="true">
                   {projects.map((project) => (
-                    <motion.article
+                    <article
                       key={`duplicate-${project.id}`}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="project-card group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       onClick={() => handleProjectClick(project)}
                     >
                       <Image
@@ -220,10 +207,10 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                         fill
                         className="h-full w-full object-cover transition duration-500 ease-out"
                       />
-                      
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
@@ -238,7 +225,7 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                           <ArrowUpRight className="h-4 w-4 text-white" />
                         </div>
                       </div>
-                    </motion.article>
+                    </article>
                   ))}
                 </div>
               </div>
@@ -252,11 +239,9 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                 {/* Group A */}
                 <div className="flex gap-6">
                   {projects.map((project) => (
-                    <motion.article
+                    <article
                       key={project.id}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="project-card group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       onClick={() => handleProjectClick(project)}
                     >
                       <Image
@@ -265,10 +250,10 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                         fill
                         className="h-full w-full object-cover transition duration-500 ease-out"
                       />
-                      
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
@@ -283,18 +268,16 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                           <ArrowUpRight className="h-4 w-4 text-white" />
                         </div>
                       </div>
-                    </motion.article>
+                    </article>
                   ))}
                 </div>
 
                 {/* Group B (duplicate for seamless loop) */}
                 <div className="flex gap-6" aria-hidden="true">
                   {projects.map((project) => (
-                    <motion.article
+                    <article
                       key={`duplicate-row2-${project.id}`}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="project-card group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       onClick={() => handleProjectClick(project)}
                     >
                       <Image
@@ -303,10 +286,10 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                         fill
                         className="h-full w-full object-cover transition duration-500 ease-out"
                       />
-                      
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
@@ -321,7 +304,7 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
                           <ArrowUpRight className="h-4 w-4 text-white" />
                         </div>
                       </div>
-                    </motion.article>
+                    </article>
                   ))}
                 </div>
               </div>

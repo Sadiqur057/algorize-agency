@@ -1,4 +1,4 @@
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 
 const AnimatedSVGChart = () => {

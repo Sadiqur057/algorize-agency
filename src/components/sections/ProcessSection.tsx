@@ -86,7 +86,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
             {/* <div className={`absolute inset-0 w-20 h-20 rounded-full ${stepColor === 'text-accent-primary' ? 'bg-accent-primary' : stepColor === 'text-accent-secondary' ? 'bg-accent-secondary' : stepColor === 'text-accent-hover' ? 'bg-accent-hover' : stepColor === 'text-accent-light' ? 'bg-accent-light' : 'bg-accent-primary'} opacity-20 blur-lg scale-125 animate-pulse`}></div> */}
 
             {/* Main Blob with Dark Center */}
-            <motion.div
+            <div
               aria-hidden="true"
               className={`w-20 h-20 rounded-full bg-linear-to-br from-bg-secondary to-bg-tertiary border-2 ${
                 stepColor === "text-accent-primary"
@@ -99,14 +99,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({
                   ? "border-accent-light"
                   : "border-accent-primary"
               } shadow-lg`}
-              animate={{
-                boxShadow: [
-                  "0 10px 25px rgba(0,0,0,0.15)",
-                  "0 20px 40px rgba(0,0,0,0.25)",
-                  "0 10px 25px rgba(0,0,0,0.15)",
-                ],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              style={{ boxShadow: "0 15px 35px rgba(0,0,0,0.2)" }}
             />
 
             {/* Inner Glow */}
@@ -182,37 +175,17 @@ const Connector: React.FC = () => (
   <motion.div
     aria-hidden="true"
     className="absolute z-10 w-96 h-48 transform md:top-40 md:-rotate-20 rotate-70"
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
   >
-    <motion.div
-      initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true }}
-      animate={{ y: [0, -3, 0] }}
-      transition={{
-        y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-        default: { duration: 0.8, ease: "easeOut" },
-      }}
+    <img
+      src="https://www.racdox.com/connector.svg"
+      alt="Connector"
       className="w-full h-full"
-    >
-      <motion.img
-        src="https://www.racdox.com/connector.svg"
-        alt="Connector"
-        className="w-full h-full"
-        animate={{
-          filter: [
-            "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-            "drop-shadow(0 10px 26px rgba(236,72,153,0.25))",
-            "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-          ],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.3,
-        }}
-      />
-    </motion.div>
+      style={{ filter: "drop-shadow(0 8px 22px rgba(99,102,241,0.25))" }}
+    />
   </motion.div>
 );
 
@@ -220,37 +193,17 @@ const BottomConnector: React.FC = () => (
   <motion.div
     aria-hidden="true"
     className="absolute z-10 w-96 h-48 transform -bottom-48 md:-bottom-64 md:rotate-40 rotate-70"
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
   >
-    <motion.div
-      initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: true }}
-      animate={{ y: [0, -3, 0] }}
-      transition={{
-        y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-        default: { duration: 0.8, ease: "easeOut" },
-      }}
+    <img
+      src="https://www.racdox.com/connector.svg"
+      alt="Connector"
       className="w-full h-full"
-    >
-      <motion.img
-        src="https://www.racdox.com/connector.svg"
-        alt="Connector"
-        className="w-full h-full"
-        animate={{
-          filter: [
-            "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-            "drop-shadow(0 10px 26px rgba(236,72,153,0.25))",
-            "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-          ],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.3,
-        }}
-      />
-    </motion.div>
+      style={{ filter: "drop-shadow(0 8px 22px rgba(99,102,241,0.25))" }}
+    />
   </motion.div>
 );
 
@@ -281,35 +234,19 @@ const ProcessSection: React.FC<{processList: any[]}> = ({processList}) => {
       viewport={{ once: true, amount: 0.2 }}
       className="flex flex-col rounded-t-[5rem] text-left justify-center items-center w-full mx-auto py-16 gap-20 md:gap-0 bg-bg-primary relative overflow-visible  not-prose"
     >
-      {/* Background Glowing Blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
+      {/* Background Glowing Blobs - Static for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
           aria-hidden="true"
-          className="absolute top-20 left-10 w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl"
-          animate={{ opacity: [0.6, 0.9, 0.6], scale: [1, 1.05, 1] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 left-10 w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl opacity-75"
         />
-        <motion.div
+        <div
           aria-hidden="true"
-          className="absolute bottom-20 right-10 w-80 h-80 bg-accent-secondary/10 rounded-full blur-3xl"
-          animate={{ opacity: [0.5, 0.85, 0.5], scale: [1, 1.06, 1] }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.6,
-          }}
+          className="absolute bottom-20 right-10 w-80 h-80 bg-accent-secondary/10 rounded-full blur-3xl opacity-70"
         />
-        <motion.div
+        <div
           aria-hidden="true"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-hover/20 rounded-full blur-3xl"
-          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.08, 1] }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.2,
-          }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-hover/20 rounded-full blur-3xl opacity-50"
         />
       </div>
 
@@ -383,37 +320,17 @@ const ProcessSection: React.FC<{processList: any[]}> = ({processList}) => {
                 <motion.div
                   aria-hidden="true"
                   className="absolute z-10 w-96 h-60 transform mt-40 sm:mt-6 md:top-10 md:rotate-0 rotate-70"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(2px)" }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    animate={{ y: [0, -3, 0] }}
-                    transition={{
-                      y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-                      default: { duration: 0.8, ease: "easeOut" },
-                    }}
+                  <img
+                    src="https://www.racdox.com/connector.svg"
+                    alt="Connector"
                     className="w-full h-full"
-                  >
-                    <motion.img
-                      src="https://www.racdox.com/connector.svg"
-                      alt="Connector"
-                      className="w-full h-full"
-                      animate={{
-                        filter: [
-                          "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-                          "drop-shadow(0 10px 26px rgba(236,72,153,0.25))",
-                          "drop-shadow(0 8px 22px rgba(99,102,241,0.25))",
-                        ],
-                      }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 0.3,
-                      }}
-                    />
-                  </motion.div>
+                    style={{ filter: "drop-shadow(0 8px 22px rgba(99,102,241,0.25))" }}
+                  />
                 </motion.div>
 
                 {/* Single Card - Right */}
