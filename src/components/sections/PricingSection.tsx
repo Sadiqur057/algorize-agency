@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card1";
 import { Sparkles as SparklesComp } from "@/components/ui/sparkles";
 
 import NumberFlow from "@number-flow/react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { TimelineContent } from "@/components/ui/timeline-animation";

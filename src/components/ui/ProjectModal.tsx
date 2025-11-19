@@ -75,11 +75,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.5, y: 0 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed inset-0 z-50 overflow-hidden h-screen w-full"
+            style={{ willChange: "transform, opacity" }}
           >
             <div className="relative h-screen w-full bg-zinc-900 rounded-2xl ring-1 ring-white/10 shadow-2xl overflow-y-auto">
               {/* Close Button */}

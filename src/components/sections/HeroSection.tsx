@@ -6,7 +6,6 @@ import SocialProofBadge from "@/components/ui/SocialProofBadge";
 import FadeInUp from "@/components/animations/FadeInUp";
 import Marquee from "@/components/ui/Marquee";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { AnimatedButton } from "../custom/button";
 
 interface Sponsor {
@@ -64,9 +63,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
         </div>
 
         {/* Additional Floating Glowing Elements - Hidden on small screens */}
-        <div className="hidden sm:block absolute top-1/4 right-1/4 w-32 h-32 bg-accent-secondary/10 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-        <div className="hidden sm:block absolute bottom-1/4 left-1/3 w-24 h-24 bg-accent-primary/8 rounded-full blur-xl opacity-60 animate-bounce"></div>
-        <div className="hidden sm:block absolute top-3/4 right-1/3 w-20 h-20 bg-accent-hover/12 rounded-full blur-lg opacity-40 animate-ping"></div>
+        <div className="hidden sm:block absolute top-1/4 right-1/4 w-32 h-32 bg-accent-secondary/10 rounded-full blur-2xl opacity-50"></div>
+        <div className="hidden sm:block absolute bottom-1/4 left-1/3 w-24 h-24 bg-accent-primary/8 rounded-full blur-xl opacity-60"></div>
+        <div className="hidden sm:block absolute top-3/4 right-1/3 w-20 h-20 bg-accent-hover/12 rounded-full blur-lg opacity-40"></div>
 
         {/* Grid Pattern Overlay */}
         <div className="absolute inset-0 opacity-5">
@@ -188,24 +187,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
         </div>
       </div>
 
-      {/* Custom CSS for blob animation */}
+      {/* Custom CSS for blob animation - GPU accelerated */}
       <style jsx>{`
         @keyframes blob {
           0% {
-            transform: translate(0px, 0px) scale(1);
+            transform: translate3d(0px, 0px, 0) scale(1);
           }
           33% {
-            transform: translate(30px, -50px) scale(1.1);
+            transform: translate3d(30px, -50px, 0) scale(1.1);
           }
           66% {
-            transform: translate(-20px, 20px) scale(0.9);
+            transform: translate3d(-20px, 20px, 0) scale(0.9);
           }
           100% {
-            transform: translate(0px, 0px) scale(1);
+            transform: translate3d(0px, 0px, 0) scale(1);
           }
         }
         .animate-blob {
-          animation: blob 7s infinite;
+          animation: blob 10s infinite;
+          will-change: transform;
         }
         .animation-delay-2000 {
           animation-delay: 2s;

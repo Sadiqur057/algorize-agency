@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib";
-import { type AnimationOptions, motion } from "motion/react";
+import { motion } from "framer-motion";
+import type { Transition } from "framer-motion";
 import {
   forwardRef,
   useCallback,
@@ -18,7 +19,7 @@ import {
 interface TextProps {
   children: React.ReactNode;
   reverse?: boolean;
-  transition?: AnimationOptions;
+  transition?: Transition;
   splitBy?: "words" | "characters" | "lines" | string;
   staggerDuration?: number;
   staggerFrom?: "first" | "last" | "center" | "random" | number;

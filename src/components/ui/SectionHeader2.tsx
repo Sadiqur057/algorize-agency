@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import TestimonialsBadge from './BadgeShadow';
 import { TimelineContent } from './timeline-animation';
-import type { Variants } from "motion/react"; // Import the Variants type
+import type { Variants } from "framer-motion"; // Import the Variants type
 
 interface SectionHeaderProps {
   badgeText?: string;
