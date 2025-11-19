@@ -1,52 +1,101 @@
-import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import  { NavbarDemo } from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import HeaderWrapper from "@/components/layout/HeaderWrapper";
+import FooterWrapper from "@/components/layout/FooterWrapper";
+// import { LenisProvider } from "@/components/providers/lenis-provider";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: 'SaaS Landing Page - Premium Websites for Startups',
-  description:
-    'Build stunning, high-converting websites that drive results. Our platform combines beautiful design with powerful functionality to help your business grow.',
-  keywords:
-    'SaaS, landing page, website builder, startups, business growth, web development',
-  authors: [{ name: 'SaaS Platform Team' }],
-  creator: 'SaaS Platform',
-  publisher: 'SaaS Platform',
-  robots: 'index, follow',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://your-domain.com',
-    title: 'SaaS Landing Page - Premium Websites for Startups',
-    description:
-      'Build stunning, high-converting websites that drive results. Our platform combines beautiful design with powerful functionality to help your business grow.',
-    siteName: 'SaaS Platform',
-    images: [
+// Fetch dynamic title from API
+async function fetchMetaData() {
+  try {
+    const response = await fetch(
+      `${process.env.API_URL}/settings/admin/prefix`,
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'SaaS Platform - Premium Websites for Startups',
+        next: {
+          revalidate: 1 * 60 * 60,
+        }, // Revalidate based on cache time in hours
+      }
+    );
+    const data = await response.json();
+
+    const settings = data?.data?.reduce((acc:any, item:any) => {
+      const [group, field] = item.key.split(".");
+      if (!acc[group]) acc[group] = {};
+      acc[group][field] = item.value;
+      return acc;
+    }, {});
+    return settings;
+  } catch (error) {
+    console.error("Failed to fetch dynamic title:", error);
+    return "Algorize Agency";
+  }
+}
+
+export async function generateMetadata() {
+  const settings = await fetchMetaData();
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://algorize-agency.vercel.app";
+
+  return {
+    title: {
+      default: settings?.admin?.site_name || "Algorize Agency",
+      template: `%s | ${settings?.admin?.site_name}`,
+    },
+    metadataBase: new URL(baseUrl),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'SaaS Landing Page - Premium Websites for Startups',
-    description:
-      'Build stunning, high-converting websites that drive results. Our platform combines beautiful design with powerful functionality to help your business grow.',
-    images: ['/og-image.jpg'],
-    creator: '@saasplatform',
-  },
-};
+    },
+    description: settings?.admin?.meta_description || "SaaS Boilerplate",
+    keywords:
+      settings?.admin?.meta_keywords ||
+      "web development, ui/ux design, digital marketing, seo, tech agency",
+    authors: [{ name: settings?.admin?.site_name || "Algorize" }],
+    creator: settings?.admin?.site_name || "Algorize",
+    publisher: settings?.admin?.site_name || "Algorize",
+    icons: {
+      icon: settings?.admin?.favicon,
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: baseUrl,
+      siteName: settings?.admin?.site_name || "Algorize Agency",
+      title: settings?.admin?.site_name || "Algorize Agency",
+      description: settings?.admin?.meta_description || "SaaS Boilerplate",
+      images: [
+        {
+          url: settings?.admin?.meta_image,
+          width: 1200,
+          height: 630,
+          alt: settings?.admin?.site_name || "Algorize Agency",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: settings?.admin?.site_name || "Algorize Agency",
+      description: settings?.admin?.meta_description || "Algorize Agency Porfolio",
+      images: [settings?.admin?.meta_image],
+      creator: `@${settings?.admin?.site_name || "Algorize"}`,
+    },
+  };
+}
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  themeColor: '#f97316',
+  themeColor: "#f97316",
 };
 
 export default function RootLayout({
@@ -77,13 +126,13 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
+      {/* <LenisProvider> */}
       <body className={`${inter.className} antialiased`}>
-        <NavbarDemo />
-        <div className='overflow-x-hidden'>
-          {children}
-        </div>
-        <Footer />
+        <HeaderWrapper />
+        <div className="overflow-x-hidden">{children}</div>
+        <FooterWrapper />
       </body>
+      {/* </LenisProvider> */}
     </html>
   );
 }
