@@ -3,17 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Image as ImageIcon,
-  LayoutGrid,
-  Mountain,
-  Box,
-  Smartphone,
   ArrowUpRight,
-  Layers,
-  ArrowRight,
-  Grid2x2,
-  PanelsTopLeft,
-  Sparkles,
   Users,
   Star,
 } from "lucide-react";
@@ -21,7 +11,38 @@ import Image from "next/image";
 import ProjectModal from "../ui/ProjectModal";
 
 
-const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => {
+interface Project {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  previewImage: string;
+  client: string;
+  date: string;
+  demoUrl?: string;
+  link?: string;
+  credentials?: Array<{
+    type: string;
+    email: string;
+    password: string;
+  }>;
+  technologies: Array<{
+    id: number;
+    name: string;
+    icon: string;
+  }>;
+  categories: Array<{
+    id: number;
+    name: string;
+  }>;
+  features: Array<{
+    title: string;
+    description: string;
+  }>;
+  images: string[];
+}
+
+const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
   console.log('Projects in RotatingMarqueeSection:', projects);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,8 +137,8 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
         }}
       >
         {/* Backdrop */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1200px] rounded-full blur-3xl bg-gradient-to-r from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10"></div>
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/60"></div>
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[1200px] rounded-full blur-3xl bg-linear-to-r from-fuchsia-600/10 via-sky-500/10 to-emerald-500/10"></div>
 
         <section className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <motion.div
@@ -150,7 +171,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                   {projects.map((project) => (
                     <motion.article
                       key={project.id}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
+                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() => handleProjectClick(project)}
@@ -163,7 +184,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                       />
                       
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
@@ -188,7 +209,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                   {projects.map((project) => (
                     <motion.article
                       key={`duplicate-${project.id}`}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
+                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() => handleProjectClick(project)}
@@ -201,7 +222,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                       />
                       
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
@@ -233,7 +254,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                   {projects.map((project) => (
                     <motion.article
                       key={project.id}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
+                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() => handleProjectClick(project)}
@@ -246,7 +267,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                       />
                       
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
@@ -271,7 +292,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                   {projects.map((project) => (
                     <motion.article
                       key={`duplicate-row2-${project.id}`}
-                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
+                      className="group relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[640px] aspect-video rounded-2xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.6)] cursor-pointer"
                       whileHover={{ scale: 1.02 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() => handleProjectClick(project)}
@@ -284,7 +305,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                       />
                       
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       
                       {/* Title and description on hover */}
                       <div className="absolute left-4 right-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
