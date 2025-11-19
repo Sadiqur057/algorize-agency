@@ -460,7 +460,7 @@ const PlatformComparisonSection: React.FC = () => {
                     const FeatureIcon = feature.icon;
                     const isPositive = featureData.impact === "positive";
                     const isNegative = featureData.impact === "negative";
-                    const ImpactIcon = isPositive ? CheckCircle : Circle;
+                    const ImpactIcon = isPositive ? CheckCircle : CircleX;
 
                     return (
                       <div
