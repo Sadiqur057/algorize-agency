@@ -86,7 +86,7 @@ export const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>
     (variant === 'outline'
       ? theme === 'dark'
         ? '#9cfe4f'
-        : '#75cc33'
+        : '#ccff00'
       : '#262626');
 
   const resolvedAfterBgColor =
