@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Button from '@/components/ui/Button';
-import SocialProofBadge from '@/components/ui/SocialProofBadge';
-import FadeInUp from '@/components/animations/FadeInUp';
-import Marquee from '@/components/ui/Marquee';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { AnimatedButton } from '../custom/button';
+import React from "react";
+import Button from "@/components/ui/Button";
+import SocialProofBadge from "@/components/ui/SocialProofBadge";
+import FadeInUp from "@/components/animations/FadeInUp";
+import Marquee from "@/components/ui/Marquee";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { AnimatedButton } from "../custom/button";
 
 interface Sponsor {
   id: number;
@@ -26,27 +26,25 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
   const testimonialAvatars = [
     {
       id: 1,
-      src: 'https://framerusercontent.com/images/UaeMNaCCtVrxQXhyIzZB7ihAs.png',
-      alt: 'Founder 1',
+      src: "https://framerusercontent.com/images/UaeMNaCCtVrxQXhyIzZB7ihAs.png",
+      alt: "Founder 1",
     },
     {
       id: 2,
-      src: 'https://framerusercontent.com/images/E3taK89otlzdIR6McZAxomrQPyo.png',
-      alt: 'Founder 2',
+      src: "https://framerusercontent.com/images/E3taK89otlzdIR6McZAxomrQPyo.png",
+      alt: "Founder 2",
     },
     {
       id: 3,
-      src: 'https://framerusercontent.com/images/f83c9nwlZghmsOqr5KiPD7NpS1I.png',
-      alt: 'Founder 3',
+      src: "https://framerusercontent.com/images/f83c9nwlZghmsOqr5KiPD7NpS1I.png",
+      alt: "Founder 3",
     },
   ];
   return (
-    <section className="relative min-h-screen flex items-center mt-16 sm:mt-20 justify-center bg-bg-primary overflow-hidden px-4 sm:px-6 lg:px-8 bg-accent-primary">
+    <section className="relative min-h-screen flex items-center mt-16 justify-center bg-bg-primary overflow-hidden px-4 sm:px-6 lg:px-8 bg-accent-primary">
       {/* Left and Right Shadows */}
       <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-bg-primary via-bg-primary/80 to-transparent z-10 pointer-events-none"></div>
       <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-bg-primary via-bg-primary/80 to-transparent z-10 pointer-events-none"></div>
-
-
 
       {/* Enhanced Background Elements with Modern Glowing Effects */}
       <div className="absolute inset-0 overflow-hidden">
@@ -76,7 +74,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
             className="absolute inset-0"
             style={{
               backgroundImage: `radial-gradient(circle at 1px 1px, rgba(204, 255, 0, 0.3) 1px, transparent 0)`,
-              backgroundSize: '30px 30px sm:50px 50px',
+              backgroundSize: "30px 30px sm:50px 50px",
             }}
           ></div>
         </div>
@@ -85,7 +83,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-bg-primary/20 to-bg-primary/60"></div>
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto py-12 sm:py-20 text-center">
+      <div className="relative w-full max-w-7xl mx-auto py-12 sm:py-12 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Enhanced Badge with Glow */}
           <FadeInUp delay={0.1}>
@@ -94,16 +92,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
               className="mb-6 sm:mb-8"
               avatars={[
                 {
-                  src: 'https://framerusercontent.com/images/UaeMNaCCtVrxQXhyIzZB7ihAs.png',
-                  alt: 'Founder 1',
+                  src: "https://framerusercontent.com/images/UaeMNaCCtVrxQXhyIzZB7ihAs.png",
+                  alt: "Founder 1",
                 },
                 {
-                  src: 'https://framerusercontent.com/images/E3taK89otlzdIR6McZAxomrQPyo.png',
-                  alt: 'Founder 2',
+                  src: "https://framerusercontent.com/images/E3taK89otlzdIR6McZAxomrQPyo.png",
+                  alt: "Founder 2",
                 },
                 {
-                  src: 'https://framerusercontent.com/images/f83c9nwlZghmsOqr5KiPD7NpS1I.png',
-                  alt: 'Founder 3',
+                  src: "https://framerusercontent.com/images/f83c9nwlZghmsOqr5KiPD7NpS1I.png",
+                  alt: "Founder 3",
                 },
               ]}
             />
@@ -129,9 +127,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
               <span className="relative z-10">
                 Premium Websites for
                 <br />
-                <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
-                  SaaS & Startups
-                </span>
+              </span>
+              <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent leading-tight block -mt-2">
+                SaaS & Startups
               </span>
               {/* Text glow effect */}
               <div className="absolute inset-0 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-accent-primary/20 blur-2xl -z-10">
@@ -165,9 +163,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
                 >
                   <span className="relative z-10">Book a 15-min call</span>
                 </Button> */}
-                <AnimatedButton>
-                  Book a 15-min call
-                </AnimatedButton>
+                <AnimatedButton>Book a 15-min call</AnimatedButton>
               </Link>
             </div>
           </FadeInUp>
@@ -175,7 +171,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ sponsors = [] }) => {
           {/* Company Logos Marquee - Mobile spacing */}
           {sponsors.length > 0 && (
             <FadeInUp delay={0.5}>
-              <div className="mt-12 sm:mt-16">
+              <div className="mt-12">
                 <p className="text-xs sm:text-sm text-text-muted mb-6 sm:mb-8 text-center px-4 sm:px-0">
                   Trusted by innovative companies worldwide
                 </p>
