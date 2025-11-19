@@ -1252,14 +1252,14 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
   return (
     <>
       <section className="relative h-full min-h-screen py-14 bg-black text-white" id="testimonials" ref={testimonialsRef}>
-        <div className="absolute bottom-0 left-0 z-[2] right-0 top-0 [mask-image:radial-gradient(ellipse_40%_50%_at_50%_0%,#000_60%,transparent_110%)]"></div>
+        <div className="absolute bottom-0 left-0 z-[2] right-0 top-0 mask-[radial-gradient(ellipse_40%_50%_at_50%_0%,#000_60%,transparent_110%)]"></div>
 
         <SectionHeader 
           eyebrow="Testimonials"
           title={
             <>
               Don't just listen to us, <br />
-              <span className="bg-gradient-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-text-primary via-accent-primary/80 to-text-primary bg-clip-text text-transparent">
                people already have
               </span>
             </>
@@ -1273,10 +1273,10 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
           <div className="absolute h-fit w-fit">
             <AnimatedDots />
           </div>
-          <Earth className="max-w-[500px] z-[0]" />
+          <Earth className="max-w-[500px] z-0" />
         </div>
         
-        <div className="relative z-[2] sm:pt-10 pt-24">
+        <div className="relative z-10 sm:pt-10 pt-24">
           <>
             {/* Removed fixed height container to prevent cropping */}
             <div className="overflow-hidden pb-2">
@@ -1306,7 +1306,7 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
                         <span className="text-xs text-accent-primary ml-1">{review.rating}</span>
                       </div>
                     </div>
-                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content flex-grow">
+                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content grow">
                       <Quote className="fill-accent-primary sm:w-5 sm:h-5 w-4 h-4 shrink-0 rotate-180 mt-1" />
                       <span>{review.review}</span>
                     </p>
@@ -1368,7 +1368,7 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
                         <span className="text-xs text-accent-primary ml-1">{review.rating}</span>
                       </div>
                     </div>
-                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content flex-grow">
+                    <p className="sm:text-base text-sm mb-4 text-white font-medium leading-relaxed flex gap-2 py-2 testimonial-content grow">
                       <Quote className="fill-accent-primary sm:w-5 sm:h-5 w-4 h-4 shrink-0 rotate-180 mt-1" />
                       <span>{review.review}</span>
                     </p>
