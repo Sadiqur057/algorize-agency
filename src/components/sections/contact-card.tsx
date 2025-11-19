@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AnimatedButton } from "../custom/button";
 
 const ContactCard = ({ className }: { className?: string }) => {
@@ -9,7 +10,11 @@ const ContactCard = ({ className }: { className?: string }) => {
           Let&apos;s discuss how our service can help your business grow and
           succeed in the digital landscape.
         </p>
-        <AnimatedButton>Let&apos;s Talk</AnimatedButton>
+        <Link
+          href="/30-min"
+        >
+          <AnimatedButton>Let&apos;s Talk</AnimatedButton>
+        </Link>
       </div>
     </div>
   );
