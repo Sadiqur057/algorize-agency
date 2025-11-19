@@ -1283,7 +1283,6 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
               <Marquee
                 // pauseOnHover
                 className={`[--duration:${duration}s]`}
-                pauseOnReducedMotion={false} // Removed performance optimization
               >
                 {reviews.map((review) => (
                   <div
@@ -1346,7 +1345,6 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
                 // pauseOnHover
                 reverse
                 className={`[--duration:${duration}s]`}
-                pauseOnReducedMotion={false} // Removed performance optimization
               >
                 {reviews.map((review) => (
                   <div
