@@ -1,52 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { motion } from "framer-motion";
-import {
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  MessageCircle,
-} from "lucide-react";
 import FadeInUp from "../animations/FadeInUp";
-import Button from "../ui/Button";
 import Link from "next/link";
 import { AnimatedButton } from "../custom/button";
 import Image from "next/image";
+import { getIconComponent } from "@/lib/utils";
 
-const Footer: React.FC<{ settings: any }> = ({ settings }) => {
-  const socialLinks = [
-    {
-      icon: Twitter,
-      href: "#",
-      label: "Twitter",
-      className: "hover:text-blue-400",
-    },
-    {
-      icon: Linkedin,
-      href: "#",
-      label: "LinkedIn",
-      className: "hover:text-blue-600",
-    },
-    {
-      icon: Instagram,
-      href: "#",
-      label: "Instagram",
-      className: "hover:text-pink-500",
-    },
-    {
-      icon: Github,
-      href: "#",
-      label: "GitHub",
-      className: "hover:text-gray-400",
-    },
-    {
-      icon: MessageCircle,
-      href: "#",
-      label: "WhatsApp",
-      className: "hover:text-green-500",
-    },
-  ];
+const Footer: React.FC<{ settings: any, social: any[] }> = ({ settings, social }) => {
+  console.log("Footer settings:", social);
+  
+  // Transform social data to include icon components
+  const socialLinks = social?.map((item) => ({
+    icon: getIconComponent(item.iconClass),
+    href: item.link,
+    label: item.title,
+    target: item.target,
+    className: "hover:text-accent-primary",
+  })) || [];
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8">
@@ -116,6 +87,8 @@ const Footer: React.FC<{ settings: any }> = ({ settings }) => {
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target={social.target}
+                    rel={social.target === "_blank" ? "noopener noreferrer" : undefined}
                     className={`w-12 h-12 bg-bg-tertiary rounded-full flex items-center justify-center text-text-muted transition-all duration-200 shadow-sm hover:shadow-md border border-border-primary hover:border-accent-primary ${social.className}`}
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
