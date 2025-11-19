@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useMediaQuery } from "@/hook/use-media-query";
 import {
@@ -6,7 +7,6 @@ import {
   NavItems,
   MobileNav,
   NavbarLogo,
-  NavbarButton,
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu,
@@ -15,49 +15,30 @@ import { useState } from "react";
 import { AnimatedButton } from "../custom/button";
 import Link from "next/link";
 
-export function NavbarDemo() {
-  const navItems = [
-    {
-      name: "Features",
-      link: "#features",
-    },
-    {
-      name: "Lunch",
-      link: "#lunch",
-    },
-    {
-      name: "Testimonials",
-      link: "#testimonials",
-    },
-
-    {
-      name: "Pricing",
-      link: "#pricing",
-    },
-    {
-      name: "Faq",
-      link: "#faq",
-    },
-  ];
+export function Header({ navbarLinks, settings }: {
+  navbarLinks: any[];
+  settings: any;
+}) {
+  const navItems =
+    navbarLinks?.map((item) => ({
+      name: item.title,
+      link: item.link,
+    })) || [];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
   return (
     <div className="relative w-full">
       <Navbar
-        className={`fixed top-0 left-0 py-2 right-0 z-50 transition-transform duration-300 ease-in-out ${
-          isVisible ? "translate-y-0" : "-translate-y-20"
-        }`}
+        className={`fixed top-0 left-0 py-2 right-0 z-50 transition-transform duration-300 ease-in-out`}
       >
         {/* Conditional rendering to prevent double navigation on mobile */}
         {isMobile ? (
           // Mobile Navigation Only
           <MobileNav>
             <MobileNavHeader>
-              <NavbarLogo />
+              <NavbarLogo logo={settings?.algorize_logo} />
               <MobileNavToggle
                 isOpen={isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -66,9 +47,8 @@ export function NavbarDemo() {
 
             <MobileNavMenu
               isOpen={isMobileMenuOpen}
-              onClose={() => setIsMobileMenuOpen(false)}
             >
-              {navItems.map((item, idx) => (
+              {navItems.map((item:any, idx:number) => (
                 <a
                   key={`mobile-link-${idx}`}
                   href={item.link}
@@ -97,7 +77,7 @@ export function NavbarDemo() {
         ) : (
           // Desktop Navigation Only
           <NavBody className="inset-shadow-[0_2px_rgb(0_0_0/0.10)] max-w-4xl h-14 items-center gap-1 hidden lg:flex rounded-full bg-card-bg px-2.5 font-semibold text-xs 2xl:text-base dark:inset-shadow-[0_1px_rgb(255_255_255/0.15)]">
-            <NavbarLogo />
+            <NavbarLogo logo={settings?.algorize_logo}/>
             <NavItems items={navItems} />
             <div className="flex items-center gap-4 py-2">
               {/* <NavbarButton variant="dark">Book a call</NavbarButton> */}

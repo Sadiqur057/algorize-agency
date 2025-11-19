@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { motion } from "framer-motion";
 import {
@@ -11,8 +12,9 @@ import FadeInUp from "../animations/FadeInUp";
 import Button from "../ui/Button";
 import Link from "next/link";
 import { AnimatedButton } from "../custom/button";
+import Image from "next/image";
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ settings: any }> = ({ settings }) => {
   const socialLinks = [
     {
       icon: Twitter,
@@ -60,12 +62,13 @@ const Footer: React.FC = () => {
             >
               {/* Logo and Brand */}
               <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-accent-primary rounded-lg flex items-center justify-center mr-3">
-                  <span className="text-text-accent font-bold text-xl">AT</span>
-                </div>
-                <span className="text-2xl font-bold text-text-primary">
-                  Algorize Tech
-                </span>
+                <Image
+                  src={settings?.algorize_logo}
+                  alt="Logo"
+                  width={30}
+                  height={30}
+                  className="h-auto w-7 object-contain"
+                />
               </div>
 
               {/* Tagline */}
