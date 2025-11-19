@@ -170,7 +170,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
                           {project.title}
                         </h3>
-                        <p 
+                        <div
                           className="text-xs md:text-sm text-zinc-300 line-clamp-2"
                           dangerouslySetInnerHTML={{ __html: project.description }}
                         />
@@ -208,7 +208,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
                           {project.title}
                         </h3>
-                        <p 
+                        <div
                           className="text-xs md:text-sm text-zinc-300 line-clamp-2"
                           dangerouslySetInnerHTML={{ __html: project.description }}
                         />
@@ -253,7 +253,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
                           {project.title}
                         </h3>
-                        <p 
+                        <div
                           className="text-xs md:text-sm text-zinc-300 line-clamp-2"
                           dangerouslySetInnerHTML={{ __html: project.description }}
                         />
@@ -291,7 +291,7 @@ const RotatingMarqueeSection: React.FC<{ projects: any[] }> = ({ projects }) => 
                         <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
                           {project.title}
                         </h3>
-                        <p 
+                        <div
                           className="text-xs md:text-sm text-zinc-300 line-clamp-2"
                           dangerouslySetInnerHTML={{ __html: project.description }}
                         />
