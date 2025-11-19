@@ -22,21 +22,6 @@ const buildCardVariants = (
   reduced: boolean,
   delay = 0
 ): Variants => {
-  // Use `any` / casts for transition/ease to satisfy framer-motion's stricter types
-  const commonShow: any = {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    rotateX: 0,
-    scale: 1,
-    transition: {
-      type: "tween" as const,
-      duration: 0.8,
-      ease: "linear" as any,
-      delay,
-    },
-  };
-
   if (reduced) {
     return {
       hidden: { opacity: 0 },
@@ -44,15 +29,24 @@ const buildCardVariants = (
     } as Variants;
   }
 
-  const hiddenMap: Record<"left" | "right" | "bottom", any> = {
-    left: { opacity: 0, x: -40, y: 10, rotateX: 8, scale: 0.98 },
-    right: { opacity: 0, x: 40, y: 10, rotateX: 8, scale: 0.98 },
-    bottom: { opacity: 0, x: 0, y: 50, rotateX: 8, scale: 0.98 },
+  const hiddenMap: Record<"left" | "right" | "bottom", { opacity: number; x: number; y: number }> = {
+    left: { opacity: 0, x: -60, y: 0 },
+    right: { opacity: 0, x: 60, y: 0 },
+    bottom: { opacity: 0, x: 0, y: 60 },
   };
 
   return {
     hidden: hiddenMap[direction],
-    show: commonShow,
+    show: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "linear",
+        delay,
+      },
+    },
   } as Variants;
 };
 
@@ -260,7 +254,6 @@ const BottomConnector: React.FC = () => (
   </motion.div>
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ProcessSection: React.FC<{processList: any[]}> = ({processList}) => {
 
   // Configuration for card colors and rotations
