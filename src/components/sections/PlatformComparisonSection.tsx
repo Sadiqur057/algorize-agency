@@ -2,20 +2,17 @@
 
 import React from "react";
 import {
-  MessageCircle,
   Users,
   Palette,
   User,
-  ArrowRight,
-  Play,
   Zap,
   Target,
   CheckCircle2,
   TrendingUp,
   DollarSign,
   CheckCircle,
-  Circle,
   CircleX,
+  Medal,
 } from "lucide-react";
 import SectionHeader from "../ui/SectionHeader";
 import Link from "next/link";
@@ -185,7 +182,7 @@ const platforms: Platform[] = [
   {
     id: "algorize",
     name: "Algorize",
-    icon: MessageCircle,
+    icon: Medal,
     description:
       "Expert-driven and committed to higher quality, with efficient results and full support.",
     isHighlighted: true,
@@ -274,15 +271,26 @@ const PlatformComparisonSection: React.FC = () => {
               gridTemplateColumns: `minmax(200px, 1fr) repeat(${platforms.length}, minmax(180px, 1fr))`,
             }}
           >
-            <div className="text-xs uppercase tracking-wide text-gray-500 p-4">
+            <div className="text-xs uppercase tracking-wide text-gray-400 p-4">
               Feature
             </div>
             {platforms.map((platform) => (
               <div
                 key={platform.id}
-                className="text-xs uppercase tracking-wide text-gray-500 p-4 text-center"
+                className={`text-xs uppercase tracking-wide p-4 text-center ${
+                  platform.isHighlighted
+                    ? "text-accent-primary font-bold bg-[radial-gradient(circle_at_center,#ccff0042_0%,transparent_25%)]"
+                    : "text-gray-400"
+                }`}
               >
-                {platform.name}
+                {platform.isHighlighted ? (
+                  <div className="flex items-center justify-center gap-2">
+                    
+                    <span>{platform.name}</span>
+                  </div>
+                ) : (
+                  platform.name
+                )}
               </div>
             ))}
           </div>
