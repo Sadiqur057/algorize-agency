@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import {
   Users,
   Palette,
@@ -539,4 +539,4 @@ const PlatformComparisonSection: React.FC = () => {
   );
 };
 
-export default PlatformComparisonSection;
+export default memo(PlatformComparisonSection);

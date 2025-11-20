@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import ScrollReveal from '@/components/animations/ScrollReveal';
@@ -113,4 +113,4 @@ const FAQSection: React.FC<{faqs: FAQ[]}> = ({faqs}) => {
   );
 };
 
-export default FAQSection;
+export default memo(FAQSection);

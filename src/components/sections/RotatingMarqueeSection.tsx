@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, memo, useCallback } from "react";
 import {
   ArrowUpRight,
   Users,
@@ -45,15 +45,15 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleProjectClick = (project: typeof projects[0]) => {
+  const handleProjectClick = useCallback((project: typeof projects[0]) => {
     setSelectedProject(project);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProject(null), 300);
-  };
+  }, []);
 
   return (
     <>
@@ -364,4 +364,4 @@ const RotatingMarqueeSection: React.FC<{ projects: Project[] }> = ({ projects })
   );
 };
 
-export default RotatingMarqueeSection;
+export default memo(RotatingMarqueeSection);

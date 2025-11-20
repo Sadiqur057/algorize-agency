@@ -1,7 +1,9 @@
-import React from 'react'
-import CurvedLoop from '../ui/CurvedLoop'
+"use client";
 
-export default function Carv() {
+import React, { memo } from "react";
+import CurvedLoop from "../ui/CurvedLoop";
+
+function Carv() {
   return (
     <div className=''>
 
@@ -29,3 +31,5 @@ export default function Carv() {
     </div>
   )
 }
+
+export default memo(Carv);

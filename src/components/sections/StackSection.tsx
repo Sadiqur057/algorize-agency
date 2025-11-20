@@ -1,5 +1,6 @@
 "use client";
 
+import React, { memo, useState, useRef } from "react";
 import { Sparkles as SparklesComp } from "@/components/ui/sparkles";
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,6 @@ import {
   Plus,
   Sparkles,
 } from "lucide-react";
-import { useRef } from "react";
 import { ProgressiveBlur } from "../ui/progressive-blur";
 import { AnimatedBeam, Circle } from "../ui/animated-beam";
 import Marquee from "../ui/marquee1";
@@ -548,4 +548,4 @@ const Feature3: React.FC<{technologies: any[], reviews: any[], projects: any[]}>
   );
 };
 
-export default Feature3;
+export default memo(Feature3);

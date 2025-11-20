@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { AnimatedButton } from "../custom/button";
@@ -119,4 +119,4 @@ const AgencyProblemsSection: React.FC = () => {
   );
 };
 
-export default AgencyProblemsSection;
+export default memo(AgencyProblemsSection);

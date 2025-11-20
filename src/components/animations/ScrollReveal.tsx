@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import React, { useEffect, useRef, memo } from 'react';
+import { motion, useAnimation, useInView, useReducedMotion } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -13,18 +13,19 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   direction = 'up',
   delay = 0,
-  duration = 0.6,
+  duration = 0.4,
   className,
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.3 });
   const controls = useAnimation();
+  const shouldReduceMotion = useReducedMotion();
 
   const directionVariants = {
-    up: { y: 60 },
-    down: { y: -60 },
-    left: { x: 60 },
-    right: { x: -60 },
+    up: { y: shouldReduceMotion ? 0 : 30 },
+    down: { y: shouldReduceMotion ? 0 : -30 },
+    left: { x: shouldReduceMotion ? 0 : 30 },
+    right: { x: shouldReduceMotion ? 0 : -30 },
   };
 
   useEffect(() => {
@@ -47,9 +48,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           x: 0,
           y: 0,
           transition: {
-            duration,
-            delay,
-            ease: 'easeOut',
+            duration: shouldReduceMotion ? 0.01 : duration,
+            delay: shouldReduceMotion ? 0 : delay,
+            ease: [0.25, 0.1, 0.25, 1],
           },
         },
       }}
@@ -60,4 +61,4 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   );
 };
 
-export default ScrollReveal;
+export default memo(ScrollReveal);

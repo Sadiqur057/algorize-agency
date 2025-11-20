@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -403,4 +403,4 @@ const ProcessSection: React.FC<{processList: any[]}> = ({processList}) => {
   );
 };
 
-export default ProcessSection;
+export default memo(ProcessSection);

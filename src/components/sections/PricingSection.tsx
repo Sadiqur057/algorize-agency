@@ -1,10 +1,10 @@
 "use client";
+import React, { useRef, useState, memo } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card1";
 import { Sparkles as SparklesComp } from "@/components/ui/sparkles";
 
 import NumberFlow from "@number-flow/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import VerticalCutReveal from "@/components/ui/vertical-cut-reveal";
@@ -76,13 +76,13 @@ const PricingSwitch = ({
   );
 };
 
-export default function PricingSection({
+const PricingSection = ({
   monthlyPlans,
   yearlyPlans,
 }: {
   monthlyPlans: Package[];
   yearlyPlans: Package[];
-}) {
+}) => {
   const [isYearly, setIsYearly] = useState(false);
   const pricingRef = useRef<HTMLDivElement>(null);
 
@@ -105,7 +105,6 @@ export default function PricingSection({
 
   const togglePricingPeriod = (value: string) => {
     setIsYearly(Number.parseInt(value) === 1);
-    console.log("Toggled pricing period to:", isYearly ? "Yearly" : "Monthly");
   };
 
   // Get the current plans based on the selected period
@@ -265,4 +264,6 @@ export default function PricingSection({
       </div>
     </div>
   );
-}
+};
+
+export default memo(PricingSection);

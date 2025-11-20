@@ -1,23 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import React from "react";
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import HeroSection from "@/components/sections/HeroSection";
-// import FeaturesSection from "@/components/sections/FeaturesSection";
-import ProcessSection from "@/components/sections/ProcessSection";
-// import TestimonialsSection from "@/components/sections/PricingSection";
-import FAQSection from "@/components/sections/FAQSection";
-// import ProjectsSection from "@/components/sections/ProjectsSection";
-import ClientFeedback from "@/components/sections/ClientFeedbackSection";
-import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
-// import FlexibleElementsSection from "@/components/sections/FlexibleElementsSection";
-import AgencyProblemsSection from "@/components/sections/AgencyProblemsSection";
-// import TechStackSection from "@/components/sections/TechStackSection";
-import Carv from "@/components/sections/Carv";
-import Feature3 from "@/components/sections/StackSection";
-import RotatingMarqueeSection from "@/components/sections/RotatingMarqueeSection";
-import PricingSection from "@/components/sections/PricingSection";
-import PlatformComparisonSection from "@/components/sections/PlatformComparisonSection";
-// import PlatformComparisonSectionOld from "@/components/sections/PlatformComparisonSection-old";
 import { homeData as fallbackData } from "@/components/sections/data";
+
+// Lazy load below-the-fold sections for better performance
+const RotatingMarqueeSection = dynamic(() => import("@/components/sections/RotatingMarqueeSection"), { 
+  loading: () => <div className="h-96 bg-bg-primary" />
+});
+const AgencyProblemsSection = dynamic(() => import("@/components/sections/AgencyProblemsSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const ProcessSection = dynamic(() => import("@/components/sections/ProcessSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const WhatWeDoSection = dynamic(() => import("@/components/sections/WhatWeDoSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const PlatformComparisonSection = dynamic(() => import("@/components/sections/PlatformComparisonSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const Carv = dynamic(() => import("@/components/sections/Carv"), { 
+  loading: () => <div className="h-64 bg-bg-primary" />
+});
+const Feature3 = dynamic(() => import("@/components/sections/StackSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const ClientFeedback = dynamic(() => import("@/components/sections/ClientFeedbackSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const PricingSection = dynamic(() => import("@/components/sections/PricingSection"), { 
+  loading: () => <div className="h-screen bg-bg-primary" />
+});
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection"), { 
+  loading: () => <div className="h-96 bg-bg-primary" />
+});
 
 // API URL from environment variable
 const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
@@ -71,28 +88,43 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-bg-primary">
       <HeroSection sponsors={data?.sponsors || []} />
-      {/* <ProjectsSection /> */}
-      {/* <FeaturesSection /> */}
-      {/* <FlexibleElementsSection /> */}
-      <RotatingMarqueeSection projects={data?.projects || []} />
-      <AgencyProblemsSection />
-      <ProcessSection processList={data?.processList || []} />
-      <WhatWeDoSection services={data?.services || []} />
-      <PlatformComparisonSection />
-      {/* <PlatformComparisonSectionOld /> */}
-      <Carv />
-      {/* <TechStackSection /> */}
-      <Feature3
-        projects={data?.projects || []}
-        reviews={data?.reviews || []}
-        technologies={data?.technologies || []}
-      />
-      <ClientFeedback reviews={data?.reviews || []} />
-      <PricingSection
-        monthlyPlans={data?.packages?.monthly || []}
-        yearlyPlans={data?.packages?.yearly || []}
-      />
-      <FAQSection faqs={data?.faqs} />
+      <Suspense fallback={<div className="h-96 bg-bg-primary" />}>
+        <RotatingMarqueeSection projects={data?.projects || []} />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <AgencyProblemsSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <ProcessSection processList={data?.processList || []} />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <WhatWeDoSection services={data?.services || []} />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <PlatformComparisonSection />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 bg-bg-primary" />}>
+        <Carv />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <Feature3
+          projects={data?.projects || []}
+          reviews={data?.reviews || []}
+          technologies={data?.technologies || []}
+        />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <ClientFeedback reviews={data?.reviews || []} />
+      </Suspense>
+      <Suspense fallback={<div className="h-screen bg-bg-primary" />}>
+        <PricingSection
+          monthlyPlans={data?.packages?.monthly || []}
+          yearlyPlans={data?.packages?.yearly || []}
+        />
+      </Suspense>
+      <Suspense fallback={<div className="h-96 bg-bg-primary" />}>
+        <FAQSection faqs={data?.faqs} />
+      </Suspense>
     </main>
   );
 }

@@ -7,6 +7,14 @@ export function LenisProvider({ children }:{ children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
         prevent: (node) => {
           // Prevent Lenis from handling scroll in modal elements
           return Boolean(

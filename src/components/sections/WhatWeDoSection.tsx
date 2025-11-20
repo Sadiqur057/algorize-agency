@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import {
   Monitor,
   Users,
@@ -253,4 +253,4 @@ const WhatWeDoSection: React.FC<{services: any[]}> = ({services}) => {
   );
 };
 
-export default WhatWeDoSection;
+export default memo(WhatWeDoSection);

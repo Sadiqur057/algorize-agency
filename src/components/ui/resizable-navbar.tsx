@@ -246,7 +246,6 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = ({ logo }: { logo: string }) => {
-  console.log("Logo in Navbar:", logo);
   return (
     <Link
       href="/"

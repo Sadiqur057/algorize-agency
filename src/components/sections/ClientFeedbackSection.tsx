@@ -1201,13 +1201,13 @@
 
 "use client";
 
+import React, { memo, useRef, useState } from "react";
 import Image from "next/image";
 import { Quote, Star } from "lucide-react";
 import Earth from "@/components/ui/globe";
 import Marquee from "@/components/ui/marquee1";
 import AnimatedDots from "@/components/ui/animate-dots";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { useRef, useState } from "react";
 
 interface Review {
   id: number;
@@ -1407,4 +1407,4 @@ function ClientFeedback({reviews}: {reviews: Review[]}) {
   );
 }
 
-export default ClientFeedback;
+export default memo(ClientFeedback);

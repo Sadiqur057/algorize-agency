@@ -8,7 +8,6 @@ import Image from "next/image";
 import { getIconComponent } from "@/lib/utils";
 
 const Footer: React.FC<{ settings: any, social: any[] }> = ({ settings, social }) => {
-  console.log("Footer settings:", social);
   
   // Transform social data to include icon components
   const socialLinks = social?.map((item) => ({

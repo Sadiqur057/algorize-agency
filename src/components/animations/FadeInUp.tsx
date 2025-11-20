@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { memo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface FadeInUpProps {
   children: React.ReactNode;
@@ -11,17 +11,19 @@ interface FadeInUpProps {
 const FadeInUp: React.FC<FadeInUpProps> = ({
   children,
   delay = 0,
-  duration = 0.6,
+  duration = 0.4,
   className,
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration,
-        delay,
-        ease: 'easeOut',
+        duration: shouldReduceMotion ? 0.01 : duration,
+        delay: shouldReduceMotion ? 0 : delay,
+        ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}
     >
@@ -30,4 +32,4 @@ const FadeInUp: React.FC<FadeInUpProps> = ({
   );
 };
 
-export default FadeInUp;
+export default memo(FadeInUp);
