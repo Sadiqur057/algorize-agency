@@ -41,8 +41,8 @@ export async function generateMetadata() {
 
   return {
     title: {
-      default: settings?.admin?.site_name || "Algorize Agency",
-      template: `%s | ${settings?.admin?.site_name}`,
+      default: settings?.admin?.site_name_algorize || "Algorize Agency",
+      template: `%s | ${settings?.admin?.site_name_algorize}`,
     },
     metadataBase: new URL(baseUrl),
     robots: {
@@ -56,38 +56,38 @@ export async function generateMetadata() {
         "max-snippet": -1,
       },
     },
-    description: settings?.admin?.meta_description || "SaaS Boilerplate",
+    description: settings?.admin?.meta_description_algorize || "SaaS Boilerplate",
     keywords:
-      settings?.admin?.meta_keywords ||
+      settings?.admin?.meta_keywords_algorize ||
       "web development, ui/ux design, digital marketing, seo, tech agency",
-    authors: [{ name: settings?.admin?.site_name || "Algorize" }],
-    creator: settings?.admin?.site_name || "Algorize",
-    publisher: settings?.admin?.site_name || "Algorize",
+    authors: [{ name: settings?.admin?.site_name_algorize || "Algorize" }],
+    creator: settings?.admin?.site_name_algorize || "Algorize",
+    publisher: settings?.admin?.site_name_algorize || "Algorize",
     icons: {
-      icon: settings?.admin?.favicon,
+      icon: settings?.admin?.favicon_algorize,
     },
     openGraph: {
       type: "website",
       locale: "en_US",
       url: baseUrl,
-      siteName: settings?.admin?.site_name || "Algorize Agency",
-      title: settings?.admin?.site_name || "Algorize Agency",
-      description: settings?.admin?.meta_description || "SaaS Boilerplate",
+      siteName: settings?.admin?.site_name_algorize || "Algorize Agency",
+      title: settings?.admin?.site_name_algorize || "Algorize Agency",
+      description: settings?.admin?.meta_description_algorize || "SaaS Boilerplate",
       images: [
         {
-          url: settings?.admin?.meta_image,
+          url: settings?.admin?.meta_image_algorize,
           width: 1200,
           height: 630,
-          alt: settings?.admin?.site_name || "Algorize Agency",
+          alt: settings?.admin?.site_name_algorize || "Algorize Agency",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: settings?.admin?.site_name || "Algorize Agency",
-      description: settings?.admin?.meta_description || "Algorize Agency Porfolio",
-      images: [settings?.admin?.meta_image],
-      creator: `@${settings?.admin?.site_name || "Algorize"}`,
+      title: settings?.admin?.site_name_algorize || "Algorize Agency",
+      description: settings?.admin?.meta_description_algorize || "Algorize Agency Porfolio",
+      images: [settings?.admin?.meta_image_algorize],
+      creator: `@${settings?.admin?.site_name_algorize || "Algorize"}`,
     },
   };
 }
